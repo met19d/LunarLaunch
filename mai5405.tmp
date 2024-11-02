@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://djpvyl67rx3nr"]
+[gd_scene load_steps=6 format=3 uid="uid://djpvyl67rx3nr"]
 
 [ext_resource type="Texture2D" uid="uid://byx5vj3mgwdh5" path="res://assets/sprites/background.png" id="1_0rxo1"]
 [ext_resource type="Script" path="res://components/game_manager.gd" id="1_weitp"]
-[ext_resource type="Script" path="res://rocket_spawner.gd" id="4_rpecu"]
+[ext_resource type="Script" path="res://components/rocket/rocket.gd" id="2_fbes2"]
+[ext_resource type="Texture2D" uid="uid://bcce00kf8h7e8" path="res://assets/sprites/rocket_sprite.png" id="2_t5vdi"]
 [ext_resource type="Texture2D" uid="uid://cg3kfo08ne3lj" path="res://assets/sprites/hud.png" id="4_rqkh7"]
 
 [node name="GameManager" type="Node2D"]
@@ -24,6 +25,14 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_0rxo1")
 
+[node name="Rocket" type="CharacterBody2D" parent="."]
+position = Vector2(0, 40)
+script = ExtResource("2_fbes2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Rocket"]
+texture_filter = 3
+texture = ExtResource("2_t5vdi")
+
 [node name="Hud" type="TextureRect" parent="."]
 anchors_preset = 8
 anchor_left = 0.5
@@ -37,6 +46,3 @@ offset_bottom = 180.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_rqkh7")
-
-[node name="Rockets" type="Node2D" parent="."]
-script = ExtResource("4_rpecu")
