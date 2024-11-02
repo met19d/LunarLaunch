@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://djpvyl67rx3nr"]
+
+[ext_resource type="Texture2D" uid="uid://byx5vj3mgwdh5" path="res://assets/sprites/background.png" id="1_0rxo1"]
+[ext_resource type="Script" path="res://rocket.gd" id="2_fbes2"]
+[ext_resource type="Texture2D" uid="uid://bcce00kf8h7e8" path="res://assets/sprites/rocket_sprite.png" id="2_t5vdi"]
+
+[node name="GameManager" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_0rxo1")
+
+[node name="Rocket" type="CharacterBody2D" parent="."]
+position = Vector2(0, 48)
+script = ExtResource("2_fbes2")
+
+[node name="Sprite2D" type="Sprite2D" parent="Rocket"]
+texture_filter = 3
+texture = ExtResource("2_t5vdi")
