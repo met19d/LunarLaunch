@@ -21,4 +21,5 @@ texture = ExtResource("2_brihb")
 [node name="Trail" type="Line2D" parent="."]
 width_curve = SubResource("Curve_40fxf")
 gradient = SubResource("Gradient_u3g5v")
+joint_mode = 1
 script = ExtResource("3_ypvew")

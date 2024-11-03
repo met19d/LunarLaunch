@@ -40,3 +40,4 @@ func launch():
 
 func get_code():
 	return required_combo
+

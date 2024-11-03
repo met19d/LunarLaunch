@@ -7,14 +7,19 @@ enum {LEFT, UP, RIGHT, DOWN}
 @onready var launch_codes : Node2D = get_node("LaunchCodes")
 @onready var score_label : Label  = get_node("Score_UI/Score")
 @onready var camera : MainCamera = get_node("MainCamera")
+@onready var hud : TextureRect = get_node("Hud")
+@onready var game_over : Control = get_node("GameOverUI")
 var score = 0
 @onready var lives = 4
 @onready var lives_label : Label = get_node("Lives/Lives")
+@onready var rocket_spawner = $Rockets
 
 func _ready():
 	score_label.text = str(score)
 	lives_label.text = str(lives)
 	AudioManager.main_theme.play()
+	rocket_spawner.toggle_active(true)
+	game_over.visible = false
 
 func _process(delta):
 	pass
@@ -82,4 +87,11 @@ func remove_life(location):
 	launch_code.reset()
 	if lives == 0:
 		print_debug("GAME OVER")
-	
+		hud.visible = false
+		game_over.visible = true
+		rocket_spawner.toggle_active(false)
+		#get_tree().reload_current_scene() 
+
+
+func _on_button_button_down():
+	get_tree().reload_current_scene() 

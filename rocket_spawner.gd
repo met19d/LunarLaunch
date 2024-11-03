@@ -4,7 +4,7 @@ var max_spawn = 5
 var spawn_tick = 0
 var spawn_rate = 6
 var rocket = preload("res://components/rocket/rocket.tscn")
-
+var is_active = false
 @export var launch_codes : Node2D
 var spawn_locations = {0: Vector2(-216,40), 1: Vector2(-125,40), 2: Vector2(0,40), 3: Vector2(125,40),  4: Vector2(216,40)}
 func _ready():
@@ -13,6 +13,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if !is_active:
+		return
+		
 	if spawn_tick > 0:
 		spawn_tick -= delta
 	else:
@@ -44,5 +47,10 @@ func spawn():
 	instance.location_id = rand
 	var launch_code: LaunchCode = launch_codes.get_node("LaunchCode"+str(instance.location_id))
 	launch_code.set_code(instance.get_code())
-
 	
+func toggle_active(active : bool):
+	is_active = active
+	
+func clear_rocket():
+	for child in get_children():
+		child.queue_free()

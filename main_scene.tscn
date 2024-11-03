@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://djpvyl67rx3nr"]
+[gd_scene load_steps=14 format=3 uid="uid://djpvyl67rx3nr"]
 
 [ext_resource type="Texture2D" uid="uid://byx5vj3mgwdh5" path="res://assets/sprites/background.png" id="1_0rxo1"]
 [ext_resource type="Script" path="res://components/game_manager.gd" id="1_weitp"]
@@ -28,6 +28,13 @@ line_spacing = 0.0
 font = ExtResource("7_vkvnv")
 font_color = Color(0.960784, 0.823529, 0.721569, 1)
 shadow_size = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_5jo1i"]
+font = ExtResource("7_vkvnv")
+font_size = 32
+font_color = Color(0.129412, 0.0980392, 0.235294, 1)
+outline_size = 3
+outline_color = Color(0.960784, 0.823529, 0.721569, 1)
 
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_weitp")
@@ -211,3 +218,45 @@ label_settings = SubResource("LabelSettings_40gjc")
 horizontal_alignment = 1
 
 [node name="AudioManager" parent="." instance=ExtResource("9_kjs1w")]
+
+[node name="GameOverUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GameOver" type="Label" parent="GameOverUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.0
+offset_top = -200.0
+offset_right = 15.0
+offset_bottom = -168.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.5, 1.5)
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_5jo1i")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="GameOverUI"]
+layout_mode = 0
+offset_left = -42.0
+offset_top = 85.0
+offset_right = 46.0
+offset_bottom = 125.0
+theme_override_colors/font_color = Color(0.129412, 0.0980392, 0.235294, 1)
+theme_override_colors/font_pressed_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_outline_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("7_vkvnv")
+theme_override_font_sizes/font_size = 32
+text = "RETRY"
+flat = true
+
+[connection signal="button_down" from="GameOverUI/Button" to="." method="_on_button_button_down"]
