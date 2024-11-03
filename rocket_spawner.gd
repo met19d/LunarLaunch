@@ -2,7 +2,7 @@ extends Node2D
 
 var max_spawn = 5
 var spawn_tick = 0
-var spawn_rate = 2
+var spawn_rate = 5
 var rocket = preload("res://components/rocket/rocket.tscn")
 
 var spawn_locations = {0: Vector2(0,40), 1: Vector2(-125,40), 2: Vector2(125,40), 3: Vector2(-216,40), 4: Vector2(216,40)}
@@ -23,15 +23,18 @@ func spawn():
 	if get_child_count() > 4:
 		return
 	var current_children = get_children()
-	var available_dict = [0, 1, 2, 3, 4]
-	for key in spawn_locations:
+	var available_spawn_points = []
+	for i in range(0, 5):
+		var available = true
 		for child in current_children:
-			if child.position == spawn_locations[key]:
-				available_dict.remove_at(key)
-				
-	var rand = randi_range(0, 4)
-	while(!available_dict.has(rand)):
-		rand = randi_range(0, 4)	
+			if child.global_position == spawn_locations[i]:
+				available = false
+		if available:
+			available_spawn_points.append(i)		
+		
+	var rand = randi_range(0, 5)
+	while(rand not in available_spawn_points):
+		rand = randi_range(0, 5)	
 		
 	var instance = rocket.instantiate()
 	add_child(instance)

@@ -2,7 +2,8 @@ extends Node2D
 
 
 var input_queue : Array = []
-enum {LEFT, RIGHT, UP, DOWN}
+enum {LEFT, UP, RIGHT, DOWN}
+@export var input_display : Node2D
 
 func _ready():
 	pass # Replace with function body.
@@ -10,7 +11,8 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	print_debug(input_queue)
+	pass
+		
 
 func _input(event):
 	if event.is_action_pressed("ui_up"):
@@ -27,8 +29,16 @@ func _input(event):
 		print_debug("ui_right")
 	if input_queue.size() > 4:
 		var start_input = input_queue[4]
-		input_queue.clear()
+		reset_input()
 		input_queue.append(start_input)
+	
+	for i in range(input_queue.size()):
+		var arrow : Sprite2D = input_display.get_node("Arrow" + str(i))
+		arrow.visible = true
+		var rotate_amount = 90*input_queue[i]
+		
+		arrow.rotation_degrees = rotate_amount
+		print_debug(arrow.rotation)
 	
 	var rockets = get_all_rockets()
 	var rockets_launched = false
@@ -37,7 +47,13 @@ func _input(event):
 			rocket.launch()
 			rockets_launched = true
 	if rockets_launched:
-		input_queue.clear()	
+		reset_input()	
 
 func get_all_rockets():
 	return get_node("Rockets").get_children()
+
+func reset_input():
+	input_queue.clear()
+	for child in input_display.get_children():
+		child.visible = false
+		child.rotation = 0
