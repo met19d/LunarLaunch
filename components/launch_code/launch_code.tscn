@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://crfm82bf01unl"]
+
+[ext_resource type="Texture2D" uid="uid://dbsc6k3qjhqtw" path="res://assets/sprites/code_arrow.png" id="1_0xaae"]
+[ext_resource type="Script" path="res://components/launch_code/launch_code.gd" id="1_wwise"]
+
+[node name="LaunchCode" type="Node2D"]
+position = Vector2(-216, 100)
+script = ExtResource("1_wwise")
+
+[node name="Arrow0" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-24, 0)
+texture = ExtResource("1_0xaae")
+
+[node name="Arrow1" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-8, 0)
+texture = ExtResource("1_0xaae")
+
+[node name="Arrow2" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(8, 0)
+texture = ExtResource("1_0xaae")
+
+[node name="Arrow3" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(24, 0)
+texture = ExtResource("1_0xaae")

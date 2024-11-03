@@ -1,14 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://djpvyl67rx3nr"]
+[gd_scene load_steps=7 format=3 uid="uid://djpvyl67rx3nr"]
 
 [ext_resource type="Texture2D" uid="uid://byx5vj3mgwdh5" path="res://assets/sprites/background.png" id="1_0rxo1"]
 [ext_resource type="Script" path="res://components/game_manager.gd" id="1_weitp"]
+[ext_resource type="PackedScene" uid="uid://crfm82bf01unl" path="res://components/launch_code/launch_code.tscn" id="4_a0b32"]
 [ext_resource type="Script" path="res://rocket_spawner.gd" id="4_rpecu"]
 [ext_resource type="Texture2D" uid="uid://cg3kfo08ne3lj" path="res://assets/sprites/hud.png" id="4_rqkh7"]
 [ext_resource type="Texture2D" uid="uid://cb6rbpfahf8cl" path="res://assets/sprites/input_arrow.png" id="5_dfjue"]
 
-[node name="GameManager" type="Node2D" node_paths=PackedStringArray("input_display")]
+[node name="GameManager" type="Node2D" node_paths=PackedStringArray("input_display", "launch_codes")]
 script = ExtResource("1_weitp")
 input_display = NodePath("InputDisplay")
+launch_codes = NodePath("LaunchCodes")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
@@ -42,10 +44,23 @@ texture = ExtResource("4_rqkh7")
 
 [node name="LaunchCodes" type="Node2D" parent="."]
 
-[node name="LaunchCode" type="Node2D" parent="LaunchCodes"]
+[node name="LaunchCode0" parent="LaunchCodes" instance=ExtResource("4_a0b32")]
 
-[node name="Rockets" type="Node2D" parent="."]
+[node name="LaunchCode1" parent="LaunchCodes" instance=ExtResource("4_a0b32")]
+position = Vector2(-124, 100)
+
+[node name="LaunchCode2" parent="LaunchCodes" instance=ExtResource("4_a0b32")]
+position = Vector2(0, 100)
+
+[node name="LaunchCode3" parent="LaunchCodes" instance=ExtResource("4_a0b32")]
+position = Vector2(124, 100)
+
+[node name="LaunchCode4" parent="LaunchCodes" instance=ExtResource("4_a0b32")]
+position = Vector2(216, 100)
+
+[node name="Rockets" type="Node2D" parent="." node_paths=PackedStringArray("launch_codes")]
 script = ExtResource("4_rpecu")
+launch_codes = NodePath("../LaunchCodes")
 
 [node name="InputDisplay" type="Node2D" parent="."]
 position = Vector2(0, 152)

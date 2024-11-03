@@ -2,10 +2,11 @@ extends Node2D
 
 var max_spawn = 5
 var spawn_tick = 0
-var spawn_rate = 5
+var spawn_rate = 2
 var rocket = preload("res://components/rocket/rocket.tscn")
 
-var spawn_locations = {0: Vector2(0,40), 1: Vector2(-125,40), 2: Vector2(125,40), 3: Vector2(-216,40), 4: Vector2(216,40)}
+@export var launch_codes : Node2D
+var spawn_locations = {0: Vector2(-216,40), 1: Vector2(-125,40), 2: Vector2(0,40), 3: Vector2(125,40),  4: Vector2(216,40)}
 func _ready():
 	spawn_tick = spawn_rate
 
@@ -31,12 +32,14 @@ func spawn():
 				available = false
 		if available:
 			available_spawn_points.append(i)		
-		
 	var rand = randi_range(0, 5)
 	while(rand not in available_spawn_points):
 		rand = randi_range(0, 5)	
-		
-	var instance = rocket.instantiate()
+	var instance : Rocket = rocket.instantiate()
 	add_child(instance)
 	instance.position = spawn_locations[rand]
-		
+	instance.location_id = rand
+	var launch_code: LaunchCode = launch_codes.get_node("LaunchCode"+str(instance.location_id))
+	launch_code.set_code(instance.get_code())
+
+	

@@ -4,6 +4,7 @@ extends Node2D
 var input_queue : Array = []
 enum {LEFT, UP, RIGHT, DOWN}
 @export var input_display : Node2D
+@export var launch_codes : Node2D
 
 func _ready():
 	pass # Replace with function body.
@@ -17,16 +18,14 @@ func _process(delta):
 func _input(event):
 	if event.is_action_pressed("ui_up"):
 		input_queue.append(UP)
-		print_debug("ui_up")
 	if event.is_action_pressed("ui_down"):
 		input_queue.append(DOWN)
-		print_debug("ui_down")
 	if event.is_action_pressed("ui_left"):
 		input_queue.append(LEFT)
-		print_debug("ui_left")
 	if event.is_action_pressed("ui_right"):
 		input_queue.append(RIGHT)
-		print_debug("ui_right")
+	if event.is_action_pressed("clear"):
+		reset_input()
 	if input_queue.size() > 4:
 		var start_input = input_queue[4]
 		reset_input()
@@ -36,9 +35,7 @@ func _input(event):
 		var arrow : Sprite2D = input_display.get_node("Arrow" + str(i))
 		arrow.visible = true
 		var rotate_amount = 90*input_queue[i]
-		
 		arrow.rotation_degrees = rotate_amount
-		print_debug(arrow.rotation)
 	
 	var rockets = get_all_rockets()
 	var rockets_launched = false
@@ -46,6 +43,8 @@ func _input(event):
 		if rocket.required_combo == input_queue:
 			rocket.launch()
 			rockets_launched = true
+			var launch_code : LaunchCode = launch_codes.get_node("LaunchCode"+str(rocket.location_id))
+			launch_code.reset()
 	if rockets_launched:
 		reset_input()	
 

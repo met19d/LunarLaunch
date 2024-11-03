@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cprrocwochy5b"]
+
+[ext_resource type="Texture2D" uid="uid://cb6rbpfahf8cl" path="res://assets/sprites/input_arrow.png" id="1_3qitl"]
+
+[node name="InputDisplay" type="Node2D"]
+position = Vector2(0, 152)
+
+[node name="Arrow0" type="Sprite2D" parent="."]
+position = Vector2(-40, 0)
+texture = ExtResource("1_3qitl")
+
+[node name="Arrow1" type="Sprite2D" parent="."]
+position = Vector2(-16, 0)
+texture = ExtResource("1_3qitl")
+
+[node name="Arrow2" type="Sprite2D" parent="."]
+position = Vector2(16, 0)
+texture = ExtResource("1_3qitl")
+
+[node name="Arrow3" type="Sprite2D" parent="."]
+position = Vector2(40, 0)
+texture = ExtResource("1_3qitl")
