@@ -3,14 +3,18 @@ extends Node2D
 
 var input_queue : Array = []
 enum {LEFT, UP, RIGHT, DOWN}
-@export var input_display : Node2D
-@export var launch_codes : Node2D
+@onready var input_display : Node2D = get_node("InputDisplay")
+@onready var launch_codes : Node2D = get_node("LaunchCodes")
+@onready var score_label : Label  = get_node("Score_UI/Score")
+@onready var camera : MainCamera = get_node("MainCamera")
+var score = 0
+@onready var lives = 3
+@onready var lives_label : Label = get_node("Lives/Lives")
 
 func _ready():
-	pass # Replace with function body.
+	score_label.text = str(score)
+	lives_label.text = str(lives)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 		
@@ -25,7 +29,9 @@ func _input(event):
 	if event.is_action_pressed("ui_right"):
 		input_queue.append(RIGHT)
 	if event.is_action_pressed("clear"):
-		reset_input()
+		if input_queue.size() != 0:
+			camera.apply_shake(5, 14)
+			reset_input()
 	if input_queue.size() > 4:
 		var start_input = input_queue[4]
 		reset_input()
@@ -42,11 +48,12 @@ func _input(event):
 	for rocket in rockets:
 		if rocket.required_combo == input_queue:
 			rocket.launch()
+			score_increase(10)
 			rockets_launched = true
 			var launch_code : LaunchCode = launch_codes.get_node("LaunchCode"+str(rocket.location_id))
 			launch_code.reset()
 	if rockets_launched:
-		reset_input()	
+		reset_input()
 
 func get_all_rockets():
 	return get_node("Rockets").get_children()
@@ -56,3 +63,16 @@ func reset_input():
 	for child in input_display.get_children():
 		child.visible = false
 		child.rotation = 0
+
+func score_increase(amount):
+	score += amount
+	score_label.text = str(score)
+
+func remove_life(location):
+	lives -= 1
+	lives_label.text = str(lives)
+	var launch_code : LaunchCode = launch_codes.get_node("LaunchCode"+str(location))
+	launch_code.reset()
+	if lives == 0:
+		print_debug("GAME OVER")
+	
