@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://djpvyl67rx3nr"]
+[gd_scene load_steps=13 format=3 uid="uid://djpvyl67rx3nr"]
 
 [ext_resource type="Texture2D" uid="uid://byx5vj3mgwdh5" path="res://assets/sprites/background.png" id="1_0rxo1"]
 [ext_resource type="Script" path="res://components/game_manager.gd" id="1_weitp"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cg3kfo08ne3lj" path="res://assets/sprites/hud.png" id="4_rqkh7"]
 [ext_resource type="Texture2D" uid="uid://cb6rbpfahf8cl" path="res://assets/sprites/input_arrow.png" id="5_dfjue"]
 [ext_resource type="FontFile" uid="uid://dc3vfmk8i7cso" path="res://assets/fonts/PixelOperatorHB.ttf" id="7_vkvnv"]
+[ext_resource type="PackedScene" uid="uid://tu0x70ep6vef" path="res://components/audio_manager/audio_manager.tscn" id="9_kjs1w"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_xgp3s"]
 font = ExtResource("7_vkvnv")
@@ -23,7 +24,7 @@ outline_size = 4
 outline_color = Color(0.960784, 0.823529, 0.721569, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_40gjc"]
-line_spacing = 2.0
+line_spacing = 0.0
 font = ExtResource("7_vkvnv")
 font_color = Color(0.960784, 0.823529, 0.721569, 1)
 shadow_size = 0
@@ -131,13 +132,12 @@ horizontal_alignment = 1
 
 [node name="Score" type="Label" parent="Score_UI"]
 layout_mode = 0
-offset_left = -20.0
-offset_top = 24.0
-offset_right = 20.0
-offset_bottom = 47.0
+offset_left = -11.0
+offset_top = 32.0
+offset_right = 29.0
+offset_bottom = 55.0
 text = "100"
 label_settings = SubResource("LabelSettings_nfbrr")
-horizontal_alignment = 1
 
 [node name="Lives" type="Control" parent="."]
 layout_mode = 3
@@ -165,10 +165,11 @@ horizontal_alignment = 1
 
 [node name="Lives" type="Label" parent="Lives"]
 layout_mode = 0
-offset_left = -20.0
+offset_left = -32.0
 offset_top = 24.0
-offset_right = 20.0
+offset_right = 8.0
 offset_bottom = 47.0
+scale = Vector2(1.5, 1.5)
 text = "3"
 label_settings = SubResource("LabelSettings_nfbrr")
 horizontal_alignment = 1
@@ -179,14 +180,34 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -128.0
-offset_top = 136.0
-offset_right = -14.0
-offset_bottom = 171.0
+offset_left = 56.0
+offset_top = 152.0
+offset_right = 170.0
+offset_bottom = 187.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.7, 0.7)
-text = "press: C
+scale = Vector2(0.6, 0.6)
+text = "press 'C'
 to clear"
 label_settings = SubResource("LabelSettings_40gjc")
 horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = 152.0
+offset_right = -12.0
+offset_bottom = 187.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+text = "use the 
+arrow keys"
+label_settings = SubResource("LabelSettings_40gjc")
+horizontal_alignment = 1
+
+[node name="AudioManager" parent="." instance=ExtResource("9_kjs1w")]

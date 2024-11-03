@@ -1,0 +1,195 @@
+[gd_scene load_steps=13 format=3 uid="uid://djpvyl67rx3nr"]
+
+[ext_resource type="Texture2D" uid="uid://byx5vj3mgwdh5" path="res://assets/sprites/background.png" id="1_0rxo1"]
+[ext_resource type="Script" path="res://components/game_manager.gd" id="1_weitp"]
+[ext_resource type="Script" path="res://main_camera.gd" id="2_g5lgf"]
+[ext_resource type="PackedScene" uid="uid://crfm82bf01unl" path="res://components/launch_code/launch_code.tscn" id="4_a0b32"]
+[ext_resource type="Script" path="res://rocket_spawner.gd" id="4_rpecu"]
+[ext_resource type="Texture2D" uid="uid://cg3kfo08ne3lj" path="res://assets/sprites/hud.png" id="4_rqkh7"]
+[ext_resource type="Texture2D" uid="uid://cb6rbpfahf8cl" path="res://assets/sprites/input_arrow.png" id="5_dfjue"]
+[ext_resource type="FontFile" uid="uid://dc3vfmk8i7cso" path="res://assets/fonts/PixelOperatorHB.ttf" id="7_vkvnv"]
+[ext_resource type="PackedScene" uid="uid://tu0x70ep6vef" path="res://components/audio_manager/audio_manager.tscn" id="9_kjs1w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xgp3s"]
+font = ExtResource("7_vkvnv")
+font_size = 32
+font_color = Color(0.129412, 0.0980392, 0.235294, 1)
+outline_size = 4
+outline_color = Color(0.960784, 0.823529, 0.721569, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nfbrr"]
+font = ExtResource("7_vkvnv")
+font_color = Color(0.129412, 0.0980392, 0.235294, 1)
+outline_size = 4
+outline_color = Color(0.960784, 0.823529, 0.721569, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_40gjc"]
+line_spacing = 0.0
+font = ExtResource("7_vkvnv")
+font_color = Color(0.960784, 0.823529, 0.721569, 1)
+shadow_size = 0
+
+[node name="GameManager" type="Node2D"]
+script = ExtResource("1_weitp")
+
+[node name="MainCamera" type="Camera2D" parent="."]
+script = ExtResource("2_g5lgf")
+
+[node name="Background" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_0rxo1")
+
+[node name="Hud" type="TextureRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -180.0
+offset_right = 320.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_rqkh7")
+
+[node name="LaunchCodes" type="Node2D" parent="."]
+
+[node name="LaunchCode0" parent="LaunchCodes" instance=ExtResource("4_a0b32")]
+
+[node name="LaunchCode1" parent="LaunchCodes" instance=ExtResource("4_a0b32")]
+position = Vector2(-124, 100)
+
+[node name="LaunchCode2" parent="LaunchCodes" instance=ExtResource("4_a0b32")]
+position = Vector2(0, 100)
+
+[node name="LaunchCode3" parent="LaunchCodes" instance=ExtResource("4_a0b32")]
+position = Vector2(124, 100)
+
+[node name="LaunchCode4" parent="LaunchCodes" instance=ExtResource("4_a0b32")]
+position = Vector2(216, 100)
+
+[node name="Rockets" type="Node2D" parent="." node_paths=PackedStringArray("launch_codes")]
+script = ExtResource("4_rpecu")
+launch_codes = NodePath("../LaunchCodes")
+
+[node name="InputDisplay" type="Node2D" parent="."]
+position = Vector2(0, 152)
+
+[node name="Arrow0" type="Sprite2D" parent="InputDisplay"]
+visible = false
+position = Vector2(-40, 0)
+texture = ExtResource("5_dfjue")
+
+[node name="Arrow1" type="Sprite2D" parent="InputDisplay"]
+visible = false
+position = Vector2(-16, 0)
+texture = ExtResource("5_dfjue")
+
+[node name="Arrow2" type="Sprite2D" parent="InputDisplay"]
+visible = false
+position = Vector2(16, 0)
+texture = ExtResource("5_dfjue")
+
+[node name="Arrow3" type="Sprite2D" parent="InputDisplay"]
+visible = false
+position = Vector2(40, 0)
+texture = ExtResource("5_dfjue")
+
+[node name="Score_UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.0
+offset_top = 112.0
+offset_right = -157.0
+offset_bottom = 152.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Score_UI"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -8.0
+offset_right = 68.0
+offset_bottom = 24.0
+text = "SCORE"
+label_settings = SubResource("LabelSettings_xgp3s")
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="Score_UI"]
+layout_mode = 0
+offset_left = -20.0
+offset_top = 24.0
+offset_right = 20.0
+offset_bottom = 47.0
+text = "100"
+label_settings = SubResource("LabelSettings_nfbrr")
+horizontal_alignment = 1
+
+[node name="Lives" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 136.0
+offset_top = 112.0
+offset_right = 176.0
+offset_bottom = 152.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Lives"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = -8.0
+offset_right = 68.0
+offset_bottom = 24.0
+text = "LIVES"
+label_settings = SubResource("LabelSettings_xgp3s")
+horizontal_alignment = 1
+
+[node name="Lives" type="Label" parent="Lives"]
+layout_mode = 0
+offset_left = -20.0
+offset_top = 24.0
+offset_right = 20.0
+offset_bottom = 47.0
+text = "3"
+label_settings = SubResource("LabelSettings_nfbrr")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = 144.0
+offset_right = -6.0
+offset_bottom = 179.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.6, 0.6)
+text = "press 'C'
+to clear"
+label_settings = SubResource("LabelSettings_40gjc")
+horizontal_alignment = 1
+
+[node name="AudioManager" parent="." instance=ExtResource("9_kjs1w")]

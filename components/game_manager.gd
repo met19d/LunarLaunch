@@ -8,28 +8,35 @@ enum {LEFT, UP, RIGHT, DOWN}
 @onready var score_label : Label  = get_node("Score_UI/Score")
 @onready var camera : MainCamera = get_node("MainCamera")
 var score = 0
-@onready var lives = 3
+@onready var lives = 4
 @onready var lives_label : Label = get_node("Lives/Lives")
 
 func _ready():
 	score_label.text = str(score)
 	lives_label.text = str(lives)
+	AudioManager.main_theme.play()
 
 func _process(delta):
 	pass
 		
 
 func _input(event):
+	
 	if event.is_action_pressed("ui_up"):
+		AudioManager.select_sfx.play()
 		input_queue.append(UP)
 	if event.is_action_pressed("ui_down"):
+		AudioManager.select_sfx.play()
 		input_queue.append(DOWN)
 	if event.is_action_pressed("ui_left"):
+		AudioManager.select_sfx.play()
 		input_queue.append(LEFT)
 	if event.is_action_pressed("ui_right"):
+		AudioManager.select_sfx.play()
 		input_queue.append(RIGHT)
 	if event.is_action_pressed("clear"):
 		if input_queue.size() != 0:
+			AudioManager.clear_sfx.play()
 			camera.apply_shake(5, 14)
 			reset_input()
 	if input_queue.size() > 4:
@@ -46,7 +53,7 @@ func _input(event):
 	var rockets = get_all_rockets()
 	var rockets_launched = false
 	for rocket in rockets:
-		if rocket.required_combo == input_queue:
+		if rocket.required_combo == input_queue and !rocket.is_flying:
 			rocket.launch()
 			score_increase(10)
 			rockets_launched = true
