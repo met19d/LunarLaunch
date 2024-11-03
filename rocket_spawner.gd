@@ -50,7 +50,12 @@ func spawn():
 	
 func toggle_active(active : bool):
 	is_active = active
+	if !active:
+		clear_rockets()
 	
-func clear_rocket():
-	for child in get_children():
-		child.queue_free()
+func clear_rockets():
+	for child : Rocket in get_children():
+		child.destroy()
+	for i in range(0, 5):
+		var launch_code: LaunchCode = launch_codes.get_node("LaunchCode"+str(i))
+		launch_code.reset()

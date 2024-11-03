@@ -26,18 +26,18 @@ func _process(delta):
 		
 
 func _input(event):
-	
+	var pitch 
 	if event.is_action_pressed("ui_up"):
-		AudioManager.select_sfx.play()
+		play_select_sfx()
 		input_queue.append(UP)
 	if event.is_action_pressed("ui_down"):
-		AudioManager.select_sfx.play()
+		play_select_sfx()
 		input_queue.append(DOWN)
 	if event.is_action_pressed("ui_left"):
-		AudioManager.select_sfx.play()
+		play_select_sfx()
 		input_queue.append(LEFT)
 	if event.is_action_pressed("ui_right"):
-		AudioManager.select_sfx.play()
+		play_select_sfx()
 		input_queue.append(RIGHT)
 	if event.is_action_pressed("clear"):
 		if input_queue.size() != 0:
@@ -90,8 +90,11 @@ func remove_life(location):
 		hud.visible = false
 		game_over.visible = true
 		rocket_spawner.toggle_active(false)
-		#get_tree().reload_current_scene() 
 
 
 func _on_button_button_down():
 	get_tree().reload_current_scene() 
+
+func play_select_sfx():
+	AudioManager.select_sfx.pitch_scale = randf_range(0.65, 0.75)
+	AudioManager.select_sfx.play()

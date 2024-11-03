@@ -23,9 +23,7 @@ func _physics_process(delta):
 		timer -= delta
 	elif !is_flying:
 		game_manager.remove_life(location_id)
-		AudioManager.explosion_sfx.play()
-		camera.apply_shake(10, 12)
-		queue_free()
+		destroy()
 	velocity.y = lerp(velocity.y, target_speed, 0.005)
 	move_and_slide()
 
@@ -41,3 +39,7 @@ func launch():
 func get_code():
 	return required_combo
 
+func destroy():
+	AudioManager.explosion_sfx.play()
+	camera.apply_shake(10, 12)
+	queue_free()
