@@ -5,16 +5,19 @@ var input_queue : Array = []
 enum {LEFT, UP, RIGHT, DOWN}
 @onready var input_display : Node2D = get_node("InputDisplay")
 @onready var launch_codes : Node2D = get_node("LaunchCodes")
-@onready var score_label : Label  = get_node("Score_UI/Score")
+@onready var score_label : Label  = get_node("Hud/Score_UI/Score")
 @onready var camera : MainCamera = get_node("MainCamera")
 @onready var hud : TextureRect = get_node("Hud")
 @onready var game_over : Control = get_node("GameOverUI")
 var score = 0
 @onready var lives = 4
-@onready var lives_label : Label = get_node("Lives/Lives")
+@onready var lives_label : Label = get_node("Hud/Lives/Lives")
 @onready var rocket_spawner = $Rockets
 
 func _ready():
+	LootLocker.player_id = OS.get_unique_id()
+	LootLocker._authentication_request()
+	
 	score_label.text = str(score)
 	lives_label.text = str(lives)
 	AudioManager.main_theme.play()
@@ -86,15 +89,14 @@ func remove_life(location):
 	var launch_code : LaunchCode = launch_codes.get_node("LaunchCode"+str(location))
 	launch_code.reset()
 	if lives == 0:
-		print_debug("GAME OVER")
 		hud.visible = false
 		game_over.visible = true
 		rocket_spawner.toggle_active(false)
-
-
-func _on_button_button_down():
-	get_tree().reload_current_scene() 
+	
 
 func play_select_sfx():
 	AudioManager.select_sfx.pitch_scale = randf_range(0.65, 0.75)
 	AudioManager.select_sfx.play()
+
+func _on_retry_pressed():
+	get_parent().get_tree().reload_current_scene() 
