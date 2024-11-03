@@ -2,7 +2,7 @@ extends Node2D
 
 var max_spawn = 5
 var spawn_tick = 0
-var spawn_rate = 5
+var spawn_rate = 6
 var rocket = preload("res://components/rocket/rocket.tscn")
 
 @export var launch_codes : Node2D
@@ -24,8 +24,8 @@ func spawn():
 	if get_child_count() > 4:
 		return
 		
-	if spawn_rate >= 1:
-		spawn_rate -= 0.5
+	if spawn_rate > 1.2:
+		spawn_rate -= 0.25
 	var current_children = get_children()
 	var available_spawn_points = []
 	for i in range(0, 5):
