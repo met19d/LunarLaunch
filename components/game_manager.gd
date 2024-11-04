@@ -70,6 +70,7 @@ func _input(event):
 			rockets_launched = true
 			var launch_code : LaunchCode = launch_codes.get_node("LaunchCode"+str(rocket.location_id))
 			launch_code.reset()
+			play_success_sfx()
 	if rockets_launched:
 		reset_input()
 
@@ -106,6 +107,10 @@ func remove_life(location):
 func play_select_sfx():
 	AudioManager.select_sfx.pitch_scale = randf_range(0.65, 0.75)
 	AudioManager.select_sfx.play()
-
+	
+func play_success_sfx():
+	AudioManager.success.pitch_scale = randf_range(0.95, 1.05)
+	AudioManager.success.play()
+	
 func _on_retry_pressed():
 	get_parent().get_tree().reload_current_scene() 

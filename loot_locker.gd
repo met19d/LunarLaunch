@@ -2,7 +2,7 @@ extends HTTPRequest
 
 # Use this game API key if you want to test with a functioning leaderboard
 # "987dbd0b9e5eb3749072acc47a210996eea9feb0"
-var game_API_key = "prod_a680e1f5b9744059a0b29a8ff6a7bc30"
+var game_API_key = "dev_65a497aecfdf4e0cba3ce9437972b4b4"
 var development_mode = true
 var leaderboard_key = "leaderboardkey"
 var session_token = ""
@@ -91,8 +91,6 @@ func _on_leaderboard_request_completed(result, response_code, headers, body):
 	var data = json.get_data()
 	for n in json.get_data().items.size():
 		var test = json.get_data().items[n].player.id
-		print_debug("loop board id: "+str(test))
-		print_debug("current id: "+ str(player_id))
 		if str(json.get_data().items[n].player.id) == str(player_id):
 			player_score = json.get_data().items[n].score
 			break
@@ -120,7 +118,7 @@ func _upload_score(score: int):
 	submit_score_http.request("https://api.lootlocker.io/game/leaderboards/"+leaderboard_key+"/submit", headers, HTTPClient.METHOD_POST, JSON.stringify(data))
 	# Print what we're sending, for debugging purposes:
 	print(data)
-	_get_leaderboards()
+	
 
 func _change_player_name(name):
 	print("Changing player name")
@@ -142,7 +140,6 @@ func _change_player_name(name):
 func _on_player_set_name_request_completed(result, response_code, headers, body):
 	var json = JSON.new()
 	json.parse(body.get_string_from_utf8())
-	_get_leaderboards()
 	update_board.emit()
 	# Print data
 	print(json.get_data())
@@ -194,6 +191,6 @@ func _on_upload_score_request_completed(result, response_code, headers, body) :
 	
 	# Print data
 	print(json.get_data())
-	
+	_get_leaderboards()
 	# Clear node
 	submit_score_http.queue_free()

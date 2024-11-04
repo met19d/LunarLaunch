@@ -6,7 +6,7 @@ var spawn_rate = 6
 var rocket = preload("res://components/rocket/rocket.tscn")
 var is_active = false
 @export var launch_codes : Node2D
-var spawn_locations = {0: Vector2(-216,40), 1: Vector2(-125,40), 2: Vector2(0,40), 3: Vector2(125,40),  4: Vector2(216,40)}
+var spawn_locations = {0: Vector2(-224,40), 1: Vector2(-112,40), 2: Vector2(0,40), 3: Vector2(112,40),  4: Vector2(224,40)}
 func _ready():
 	spawn_tick = spawn_rate
 

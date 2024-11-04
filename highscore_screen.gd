@@ -1,7 +1,7 @@
 extends Control
 @onready var loot_locker = $"../LootLocker"
 @onready var score_node = $"Score_UI/Score"
-
+@onready var submit = $Submit
 @onready var line_edit : LineEdit = $LineEdit
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -9,8 +9,11 @@ func _ready():
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+#func _process(delta):
+	#if line_edit.text.is_empty():
+		#submit.disabled = true
+	#else:
+		#submit.disabled = false	
 
 
 func _on_submit_pressed():

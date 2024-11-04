@@ -14,7 +14,11 @@ func _on_loot_locker_update_board():
 		var name_entry = get_node("VBoxContainer/HBoxContainer/PlayerNames/Label"+str(n+1))
 		var score_entry = get_node("VBoxContainer/HBoxContainer/Scores/Label"+str(n+1))
 		rank_entry.text = str(json.get_data().items[n].rank)
-		name_entry.text = str(json.get_data().items[n].player.name)
+		var name_text : String = str(json.get_data().items[n].player.name)
+		if name_text == "":
+			name_entry.text = "unknown"
+		else:
+			name_entry.text = str(json.get_data().items[n].player.name)
 		score_entry.text = str(json.get_data().items[n].score)
 		if n >= 4:
 			break
