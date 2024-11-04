@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://djpvyl67rx3nr"]
+[gd_scene load_steps=25 format=3 uid="uid://djpvyl67rx3nr"]
 
 [ext_resource type="Texture2D" uid="uid://byx5vj3mgwdh5" path="res://assets/sprites/background.png" id="1_0rxo1"]
 [ext_resource type="Script" path="res://components/game_manager.gd" id="1_weitp"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://rocket_spawner.gd" id="4_rpecu"]
 [ext_resource type="Texture2D" uid="uid://cg3kfo08ne3lj" path="res://assets/sprites/hud.png" id="4_rqkh7"]
 [ext_resource type="Texture2D" uid="uid://cb6rbpfahf8cl" path="res://assets/sprites/input_arrow.png" id="5_dfjue"]
+[ext_resource type="Texture2D" uid="uid://cf2uqoa61xrn4" path="res://assets/sprites/check_on.png" id="6_eldg7"]
+[ext_resource type="Texture2D" uid="uid://bf0hkflwlb56a" path="res://assets/sprites/check_off.png" id="7_7yswk"]
 [ext_resource type="FontFile" uid="uid://dc3vfmk8i7cso" path="res://assets/fonts/PixelOperatorHB.ttf" id="7_vkvnv"]
 [ext_resource type="PackedScene" uid="uid://tu0x70ep6vef" path="res://components/audio_manager/audio_manager.tscn" id="9_kjs1w"]
 [ext_resource type="Script" path="res://leaderboard.gd" id="10_gguyh"]
@@ -39,6 +41,9 @@ font_size = 32
 font_color = Color(0.129412, 0.0980392, 0.235294, 1)
 outline_size = 4
 outline_color = Color(0.960784, 0.823529, 0.721569, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5nqkt"]
+modulate_color = Color(1, 1, 1, 0)
 
 [sub_resource type="LabelSettings" id="LabelSettings_50g24"]
 font = ExtResource("7_vkvnv")
@@ -88,9 +93,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -320.0
-offset_top = -180.0
+offset_top = -13.0
 offset_right = 320.0
-offset_bottom = 180.0
+offset_bottom = 347.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("4_rqkh7")
@@ -103,9 +108,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 56.0
-offset_top = 152.0
+offset_top = -17.0
 offset_right = 170.0
-offset_bottom = 187.0
+offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.6, 0.6)
@@ -122,9 +127,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -136.0
-offset_top = 152.0
+offset_top = -17.0
 offset_right = -12.0
-offset_bottom = 187.0
+offset_bottom = 18.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.6, 0.6)
@@ -140,10 +145,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -197.0
-offset_top = 112.0
-offset_right = -157.0
-offset_bottom = 152.0
+offset_left = -213.0
+offset_top = -57.0
+offset_right = -173.0
+offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -174,9 +179,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 136.0
-offset_top = 112.0
+offset_top = -57.0
 offset_right = 176.0
-offset_bottom = 152.0
+offset_bottom = -17.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -192,14 +197,31 @@ horizontal_alignment = 1
 
 [node name="Lives" type="Label" parent="Hud/Lives"]
 layout_mode = 0
-offset_left = -32.0
+offset_left = -4.0
 offset_top = 24.0
-offset_right = 8.0
-offset_bottom = 47.0
+offset_right = 36.0
+offset_bottom = 56.0
 scale = Vector2(1.5, 1.5)
 text = "3"
 label_settings = SubResource("LabelSettings_nfbrr")
 horizontal_alignment = 1
+
+[node name="CheckBox" type="CheckBox" parent="Hud"]
+layout_mode = 0
+offset_left = 549.0
+offset_top = 155.0
+offset_right = 622.0
+offset_bottom = 186.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.576471, 0.184314, 0.482353, 1)
+theme_override_colors/font_pressed_color = Color(0.901961, 0.482353, 0.545098, 1)
+theme_override_colors/font_hover_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_fonts/font = ExtResource("7_vkvnv")
+theme_override_icons/checked = ExtResource("6_eldg7")
+theme_override_icons/unchecked = ExtResource("7_7yswk")
+button_pressed = true
+text = "Audio"
 
 [node name="LaunchCodes" type="Node2D" parent="."]
 
@@ -283,9 +305,11 @@ theme_override_colors/font_hover_color = Color(0.901961, 0.482353, 0.545098, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
 theme_override_colors/font_hover_pressed_color = Color(0.960784, 0.823529, 0.721569, 1)
 theme_override_colors/font_outline_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("7_vkvnv")
 theme_override_font_sizes/font_size = 32
+theme_override_styles/focus = SubResource("StyleBoxTexture_5nqkt")
 text = "RETRY"
 flat = true
 
@@ -464,9 +488,9 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="HighscoreScreen/Score_UI"]
 layout_mode = 0
-offset_left = -49.0
+offset_left = -55.0
 offset_top = 27.0
-offset_right = 185.0
+offset_right = 179.0
 offset_bottom = 59.0
 text = "Your Score"
 label_settings = SubResource("LabelSettings_xgp3s")
@@ -478,6 +502,7 @@ offset_left = 36.0
 offset_top = 67.0
 offset_right = 84.0
 offset_bottom = 99.0
+text = "123"
 label_settings = SubResource("LabelSettings_nfbrr")
 horizontal_alignment = 1
 
@@ -519,6 +544,7 @@ flat = true
 
 [node name="LootLocker" parent="." instance=ExtResource("12_rj0ox")]
 
+[connection signal="toggled" from="Hud/CheckBox" to="AudioManager" method="_on_check_box_toggled"]
 [connection signal="pressed" from="GameOverUI/Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="HighscoreScreen/Submit" to="HighscoreScreen" method="_on_submit_pressed"]
 [connection signal="update_board" from="LootLocker" to="GameOverUI/Leaderboard" method="_on_loot_locker_update_board"]

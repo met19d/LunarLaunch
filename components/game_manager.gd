@@ -11,7 +11,7 @@ enum {LEFT, UP, RIGHT, DOWN}
 @onready var game_over : Control = get_node("GameOverUI")
 @onready var highscore_screen = $HighscoreScreen
 var score = 0
-@onready var lives = 1
+@onready var lives = 3
 @onready var lives_label : Label = get_node("Hud/Lives/Lives")
 @onready var rocket_spawner = $Rockets
 @onready var loot_locker = $LootLocker

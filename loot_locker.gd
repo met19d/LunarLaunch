@@ -2,7 +2,7 @@ extends HTTPRequest
 
 # Use this game API key if you want to test with a functioning leaderboard
 # "987dbd0b9e5eb3749072acc47a210996eea9feb0"
-var game_API_key = "dev_65a497aecfdf4e0cba3ce9437972b4b4"
+var game_API_key = "prod_a680e1f5b9744059a0b29a8ff6a7bc30"
 var development_mode = true
 var leaderboard_key = "leaderboardkey"
 var session_token = ""
