@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 AudioManager="*res://components/audio_manager/audio_manager.tscn"
-LootLocker="*res://loot_locker.gd"
 
 [display]
 

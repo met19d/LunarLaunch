@@ -464,11 +464,11 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="HighscoreScreen/Score_UI"]
 layout_mode = 0
-offset_left = -49.0
-offset_top = 27.0
-offset_right = 185.0
-offset_bottom = 59.0
-text = "Your Score"
+offset_left = -59.0
+offset_top = 10.0
+offset_right = 175.0
+offset_bottom = 42.0
+text = "NEW HIGHSCORE!!!"
 label_settings = SubResource("LabelSettings_xgp3s")
 horizontal_alignment = 1
 
@@ -478,6 +478,7 @@ offset_left = 36.0
 offset_top = 67.0
 offset_right = 84.0
 offset_bottom = 99.0
+text = "100"
 label_settings = SubResource("LabelSettings_nfbrr")
 horizontal_alignment = 1
 
@@ -500,9 +501,85 @@ flat = true
 [node name="Submit" type="Button" parent="HighscoreScreen"]
 layout_mode = 0
 offset_left = -55.0
-offset_top = 53.0
+offset_top = 28.0
 offset_right = 49.0
-offset_bottom = 93.0
+offset_bottom = 68.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.129412, 0.0980392, 0.235294, 1)
+theme_override_colors/font_pressed_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_colors/font_hover_color = Color(0.901961, 0.482353, 0.545098, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_hover_pressed_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_colors/font_outline_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("7_vkvnv")
+theme_override_font_sizes/font_size = 16
+text = "SUBMIT"
+flat = true
+
+[node name="HighscoreScreen2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("10_jm4ke")
+
+[node name="Score_UI" type="Control" parent="HighscoreScreen2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = -119.0
+offset_right = -42.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="HighscoreScreen2/Score_UI"]
+layout_mode = 0
+offset_left = -59.0
+offset_top = 10.0
+offset_right = 175.0
+offset_bottom = 42.0
+text = "NEW HIGHSCORE!!!"
+label_settings = SubResource("LabelSettings_xgp3s")
+horizontal_alignment = 1
+
+[node name="Score" type="Label" parent="HighscoreScreen2/Score_UI"]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 67.0
+offset_right = 84.0
+offset_bottom = 99.0
+label_settings = SubResource("LabelSettings_nfbrr")
+horizontal_alignment = 1
+
+[node name="LineEdit" type="LineEdit" parent="HighscoreScreen2"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 0
+offset_left = -77.0
+offset_top = 12.0
+offset_right = 73.0
+offset_bottom = 43.0
+theme_override_colors/font_color = Color(0.901961, 0.482353, 0.545098, 1)
+theme_override_colors/font_placeholder_color = Color(0.576471, 0.184314, 0.482353, 1)
+theme_override_colors/font_outline_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_fonts/font = ExtResource("7_vkvnv")
+theme_override_styles/focus = SubResource("StyleBoxFlat_mhv03")
+placeholder_text = "Enter Name"
+alignment = 1
+flat = true
+
+[node name="Submit" type="Button" parent="HighscoreScreen2"]
+layout_mode = 0
+offset_left = -55.0
+offset_top = 28.0
+offset_right = 49.0
+offset_bottom = 68.0
 focus_mode = 0
 theme_override_colors/font_color = Color(0.129412, 0.0980392, 0.235294, 1)
 theme_override_colors/font_pressed_color = Color(0.960784, 0.823529, 0.721569, 1)
@@ -521,4 +598,5 @@ flat = true
 
 [connection signal="pressed" from="GameOverUI/Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="HighscoreScreen/Submit" to="HighscoreScreen" method="_on_submit_pressed"]
+[connection signal="pressed" from="HighscoreScreen2/Submit" to="HighscoreScreen2" method="_on_submit_pressed"]
 [connection signal="update_board" from="LootLocker" to="GameOverUI/Leaderboard" method="_on_loot_locker_update_board"]

@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5akxcvevnxdn"]
+
+[ext_resource type="Script" path="res://loot_locker.gd" id="1_hsm83"]
+
+[node name="LootLocker" type="HTTPRequest"]
+script = ExtResource("1_hsm83")
+
+[node name="@Timer@128965" type="Timer" parent="."]
+one_shot = true

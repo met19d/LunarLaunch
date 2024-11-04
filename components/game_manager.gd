@@ -9,14 +9,17 @@ enum {LEFT, UP, RIGHT, DOWN}
 @onready var camera : MainCamera = get_node("MainCamera")
 @onready var hud : TextureRect = get_node("Hud")
 @onready var game_over : Control = get_node("GameOverUI")
+@onready var highscore_screen = $HighscoreScreen
 var score = 0
-@onready var lives = 4
+@onready var lives = 1
 @onready var lives_label : Label = get_node("Hud/Lives/Lives")
 @onready var rocket_spawner = $Rockets
+@onready var loot_locker = $LootLocker
 
 func _ready():
-	LootLocker.player_id = OS.get_unique_id()
-	LootLocker._authentication_request()
+	loot_locker.player_id = OS.get_unique_id()
+	
+	loot_locker._authentication_request()
 	
 	score_label.text = str(score)
 	lives_label.text = str(lives)
@@ -89,9 +92,15 @@ func remove_life(location):
 	var launch_code : LaunchCode = launch_codes.get_node("LaunchCode"+str(location))
 	launch_code.reset()
 	if lives == 0:
+		loot_locker._get_leaderboards()
 		hud.visible = false
-		game_over.visible = true
 		rocket_spawner.toggle_active(false)
+		var previous = loot_locker.player_score
+		if score > loot_locker.player_score:	
+			highscore_screen.visible = true
+			highscore_screen.set_score_text(score)
+		else:
+			game_over.visible = true
 	
 
 func play_select_sfx():

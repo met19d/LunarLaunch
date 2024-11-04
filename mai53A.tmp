@@ -464,11 +464,11 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="HighscoreScreen/Score_UI"]
 layout_mode = 0
-offset_left = -49.0
-offset_top = 27.0
-offset_right = 185.0
-offset_bottom = 59.0
-text = "Your Score"
+offset_left = -59.0
+offset_top = 10.0
+offset_right = 175.0
+offset_bottom = 42.0
+text = "NEW HIGHSCORE!!!"
 label_settings = SubResource("LabelSettings_xgp3s")
 horizontal_alignment = 1
 
@@ -500,9 +500,9 @@ flat = true
 [node name="Submit" type="Button" parent="HighscoreScreen"]
 layout_mode = 0
 offset_left = -55.0
-offset_top = 53.0
+offset_top = 28.0
 offset_right = 49.0
-offset_bottom = 93.0
+offset_bottom = 68.0
 focus_mode = 0
 theme_override_colors/font_color = Color(0.129412, 0.0980392, 0.235294, 1)
 theme_override_colors/font_pressed_color = Color(0.960784, 0.823529, 0.721569, 1)
