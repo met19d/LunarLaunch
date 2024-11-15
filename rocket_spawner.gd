@@ -31,7 +31,7 @@ func spawn():
 	if get_child_count() > 4:
 		return
 		
-	if spawn_rate > 1.0:
+	if spawn_rate > 0.8:
 		spawn_rate -= 0.25
 	var current_children = get_children()
 	var available_spawn_points = []

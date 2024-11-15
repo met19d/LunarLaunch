@@ -23,7 +23,7 @@ pitch_scale = 0.7
 
 [node name="LaunchSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_2x3u1")
-volume_db = -6.685
+volume_db = -5.694
 pitch_scale = 0.81
 
 [node name="ClearSFX" type="AudioStreamPlayer2D" parent="."]
@@ -37,7 +37,7 @@ volume_db = -18.321
 
 [node name="Success" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_15ibc")
-volume_db = -8.119
+volume_db = -9.993
 
 [node name="Multi" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_vba1n")

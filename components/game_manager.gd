@@ -118,7 +118,10 @@ func play_select_sfx():
 	AudioManager.select_sfx.play()
 	
 func play_success_sfx():
-	AudioManager.success.pitch_scale = randf_range(0.90, 0.95)
+	var change_amt = score
+	if change_amt  > 100000:
+		change_amt = 100000
+	AudioManager.success.pitch_scale = randf_range(0.90, 0.95) + score*.00000001
 	AudioManager.success.play()
 	
 func play_multi_sfx():
