@@ -63,6 +63,7 @@ func _input(event):
 	
 	var rockets = get_all_rockets()
 	var rockets_launched = false
+	var multi_counter = 0
 	for rocket in rockets:
 		if rocket.required_combo == input_queue and !rocket.is_flying:
 			rocket.launch()
@@ -70,8 +71,16 @@ func _input(event):
 			rockets_launched = true
 			var launch_code : LaunchCode = launch_codes.get_node("LaunchCode"+str(rocket.location_id))
 			launch_code.reset()
-			play_success_sfx()
+			multi_counter += 1
 	if rockets_launched:
+		if multi_counter > 1:
+			play_multi_sfx()
+			if multi_counter > 3:
+				score_increase(10)
+			else:
+				score_increase(5)
+		else:
+			play_success_sfx()	
 		reset_input()
 
 func get_all_rockets():
@@ -109,8 +118,11 @@ func play_select_sfx():
 	AudioManager.select_sfx.play()
 	
 func play_success_sfx():
-	AudioManager.success.pitch_scale = randf_range(0.95, 1.05)
+	AudioManager.success.pitch_scale = randf_range(0.90, 0.95)
 	AudioManager.success.play()
+	
+func play_multi_sfx():
+	AudioManager.multi.play()
 	
 func _on_retry_pressed():
 	get_parent().get_tree().reload_current_scene() 

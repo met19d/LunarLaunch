@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://tu0x70ep6vef"]
+[gd_scene load_steps=9 format=3 uid="uid://tu0x70ep6vef"]
 
 [ext_resource type="Script" path="res://components/audio_manager/audio_manager.gd" id="1_wp8op"]
 [ext_resource type="AudioStream" uid="uid://8pn0dh4ghkg4" path="res://assets/audio/explosion.wav" id="2_uq3gn"]
@@ -6,7 +6,8 @@
 [ext_resource type="AudioStream" uid="uid://d17t02h7x4ixx" path="res://assets/audio/rocket_launch_sound.mp3" id="4_2x3u1"]
 [ext_resource type="AudioStream" uid="uid://d0xq1oj5cwpxk" path="res://assets/audio/clear.mp3" id="5_dfqp8"]
 [ext_resource type="AudioStream" uid="uid://cq5wo3k1qph1w" path="res://assets/audio/Level(M).wav" id="6_ieder"]
-[ext_resource type="AudioStream" uid="uid://co0udw6q2ucgi" path="res://assets/audio/success.mp3" id="7_klu02"]
+[ext_resource type="AudioStream" uid="uid://cwae61lskdxnc" path="res://assets/audio/new_success.mp3" id="7_15ibc"]
+[ext_resource type="AudioStream" uid="uid://dugkprp2rfvyb" path="res://assets/audio/double_score.mp3" id="8_vba1n"]
 
 [node name="AudioManager" type="Node2D"]
 script = ExtResource("1_wp8op")
@@ -35,5 +36,9 @@ stream = ExtResource("6_ieder")
 volume_db = -18.321
 
 [node name="Success" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("7_klu02")
-volume_db = -4.371
+stream = ExtResource("7_15ibc")
+volume_db = -8.119
+
+[node name="Multi" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_vba1n")
+volume_db = -2.811

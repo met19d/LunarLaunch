@@ -2,7 +2,7 @@ extends Node2D
 
 var max_spawn = 5
 var spawn_tick = 0
-var spawn_rate = 6
+var spawn_rate = 5
 var rocket = preload("res://components/rocket/rocket.tscn")
 var is_active = false
 @export var launch_codes : Node2D
@@ -21,13 +21,17 @@ func _process(delta):
 	else:
 		if get_child_count() <= max_spawn:
 			spawn()
+			if get_child_count() < max_spawn and spawn_rate <= 4:
+				var rand = randi_range(0, 10)
+				if rand > 6:
+					spawn()
 		spawn_tick = spawn_rate
 
 func spawn():
 	if get_child_count() > 4:
 		return
 		
-	if spawn_rate > 1.2:
+	if spawn_rate > 1.0:
 		spawn_rate -= 0.25
 	var current_children = get_children()
 	var available_spawn_points = []

@@ -5,6 +5,7 @@ extends Node2D
 @onready var select_sfx = $SelectSFX
 @onready var launch_sfx = $LaunchSFX
 @onready var success = $Success
+@onready var multi = $Multi
 
 
 func _on_check_box_toggled(toggled_on):
