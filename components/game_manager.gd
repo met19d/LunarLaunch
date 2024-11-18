@@ -39,6 +39,7 @@ func start():
 func _input(event):
 	if !game_started and Input.is_anything_pressed():
 		start()
+		return
 	if event.is_action_pressed("pause") and game_started:
 		toggle_pause(!is_paused)
 
@@ -141,6 +142,7 @@ func play_multi_sfx():
 	AudioManager.multi.play()
 	
 func _on_retry_pressed():
+	AudioManager.main_theme.stop()
 	get_parent().get_tree().reload_current_scene() 
 
 func toggle_pause(pause : bool):
