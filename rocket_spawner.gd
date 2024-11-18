@@ -15,7 +15,8 @@ func _ready():
 func _process(delta):
 	if !is_active:
 		return
-		
+	for child in get_children():
+		child.set_process(is_active)
 	if spawn_tick > 0:
 		spawn_tick -= delta
 	else:
@@ -38,7 +39,7 @@ func spawn():
 	for i in range(0, 5):
 		var available = true
 		for child in current_children:
-			if child.global_position.x == spawn_locations[i].x:
+			if child.global_position.x == spawn_locations[i].x and child.global_position.y > -50:
 				available = false
 		if available:
 			available_spawn_points.append(i)		

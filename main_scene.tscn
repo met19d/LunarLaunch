@@ -546,6 +546,34 @@ flat = true
 
 [node name="LootLocker" parent="." instance=ExtResource("12_rj0ox")]
 
+[node name="StartScreen" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PauseOverlay" type="TextureRect" parent="StartScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -662.0
+offset_top = -367.0
+offset_right = -22.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("1_0rxo1")
+
+[node name="Label" type="Label" parent="StartScreen"]
+offset_left = -145.0
+offset_top = -32.0
+offset_right = 169.0
+text = "press any key to start"
+label_settings = SubResource("LabelSettings_xgp3s")
+horizontal_alignment = 1
+
 [node name="PauseScreen" type="TextureRect" parent="."]
 visible = false
 offset_right = 40.0

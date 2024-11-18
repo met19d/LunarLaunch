@@ -18,29 +18,29 @@ var score = 0
 var streak = 0
 var is_paused = false
 @onready var pause_screen = $PauseScreen
+var game_started = false
+@onready var start_screen = $StartScreen
 
 func _ready():
 	loot_locker.player_id = OS.get_unique_id()
 	loot_locker._authentication_request()
 	score_label.text = str(score)
 	lives_label.text = str(lives)
-	AudioManager.main_theme.play()
-	rocket_spawner.toggle_active(true)
 	game_over.visible = false
-
+	start_screen.visible = true
 func _process(delta):
 	pass
-
+func start():
+	rocket_spawner.toggle_active(true)
+	AudioManager.main_theme.play()
+	game_started = true
+	start_screen.visible = false
+	
 func _input(event):
-	if event.is_action_pressed("pause"):
-		is_paused = !is_paused
-		pause_screen.visible = is_paused
-		launch_codes.visible = !is_paused
-		rocket_spawner.is_active = !is_paused
-		if is_paused:
-			AudioManager.main_theme.volume_db -= 15
-		else:
-			AudioManager.main_theme.volume_db += 15	
+	if !game_started and Input.is_anything_pressed():
+		start()
+	if event.is_action_pressed("pause") and game_started:
+		toggle_pause(!is_paused)
 
 	if is_paused:
 		return
@@ -142,3 +142,13 @@ func play_multi_sfx():
 	
 func _on_retry_pressed():
 	get_parent().get_tree().reload_current_scene() 
+
+func toggle_pause(pause : bool):
+	is_paused = pause
+	pause_screen.visible = is_paused
+	launch_codes.visible = !is_paused
+	rocket_spawner.is_active = !is_paused
+	if is_paused:
+		AudioManager.main_theme.volume_db -= 15
+	else:
+		AudioManager.main_theme.volume_db += 15	

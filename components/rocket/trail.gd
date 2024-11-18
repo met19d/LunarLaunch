@@ -2,8 +2,11 @@ extends Line2D
 
 var queue : Array
 var max_length : int = 20
-
+@onready var rocket = get_parent()
 func _process(delta):
+	if rocket.game_manager.is_paused:
+		return
+		
 	global_position = Vector2(0, 25)
 	var pos = get_parent().position
 	queue.push_front(pos)

@@ -20,6 +20,9 @@ func _ready():
 func _physics_process(delta):
 	if game_manager.is_paused:
 		return
+	if global_position.y < -550:
+		print_debug("released")
+		queue_free()
 	if timer > 0:
 		timer -= delta
 	elif !is_flying:
@@ -38,8 +41,6 @@ func launch():
 	AudioManager.launch_sfx.play()
 	target_speed = speed
 	is_flying = true
-	await await get_tree().create_timer(4).timeout
-	queue_free()
 
 func get_code():
 	return required_combo
