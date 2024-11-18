@@ -15,6 +15,7 @@ var score = 0
 @onready var lives_label : Label = get_node("Hud/Lives/Lives")
 @onready var rocket_spawner = $Rockets
 @onready var loot_locker = $LootLocker
+var streak = 0
 
 func _ready():
 	loot_locker.player_id = OS.get_unique_id()
@@ -32,7 +33,6 @@ func _process(delta):
 		
 
 func _input(event):
-	var pitch 
 	if event.is_action_pressed("ui_up"):
 		play_select_sfx()
 		input_queue.append(UP)
@@ -93,10 +93,12 @@ func reset_input():
 		child.rotation = 0
 
 func score_increase(amount):
+	streak += 1
 	score += amount
 	score_label.text = str(score)
 
 func remove_life(location):
+	streak = 0
 	lives -= 1
 	lives_label.text = str(lives)
 	var launch_code : LaunchCode = launch_codes.get_node("LaunchCode"+str(location))
@@ -118,10 +120,10 @@ func play_select_sfx():
 	AudioManager.select_sfx.play()
 	
 func play_success_sfx():
-	var change_amt = score
-	if change_amt  > 100000:
-		change_amt = 100000
-	AudioManager.success.pitch_scale = randf_range(0.90, 0.95) + score*.00000001
+	var change_amt = streak
+	if change_amt  > 70:
+		change_amt = 70
+	AudioManager.success.pitch_scale = randf_range(0.89, 0.94) + change_amt*.01
 	AudioManager.success.play()
 	
 func play_multi_sfx():
