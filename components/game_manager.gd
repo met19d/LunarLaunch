@@ -16,12 +16,12 @@ var score = 0
 @onready var rocket_spawner = $Rockets
 @onready var loot_locker = $LootLocker
 var streak = 0
+var is_paused = false
+@onready var pause_screen = $PauseScreen
 
 func _ready():
 	loot_locker.player_id = OS.get_unique_id()
-	
 	loot_locker._authentication_request()
-	
 	score_label.text = str(score)
 	lives_label.text = str(lives)
 	AudioManager.main_theme.play()
@@ -30,9 +30,20 @@ func _ready():
 
 func _process(delta):
 	pass
-		
 
 func _input(event):
+	if event.is_action_pressed("pause"):
+		is_paused = !is_paused
+		pause_screen.visible = is_paused
+		launch_codes.visible = !is_paused
+		rocket_spawner.is_active = !is_paused
+		if is_paused:
+			AudioManager.main_theme.volume_db -= 15
+		else:
+			AudioManager.main_theme.volume_db += 15	
+
+	if is_paused:
+		return
 	if event.is_action_pressed("ui_up"):
 		play_select_sfx()
 		input_queue.append(UP)

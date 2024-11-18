@@ -546,6 +546,36 @@ flat = true
 
 [node name="LootLocker" parent="." instance=ExtResource("12_rj0ox")]
 
+[node name="PauseScreen" type="TextureRect" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PauseOverlay" type="TextureRect" parent="PauseScreen"]
+modulate = Color(0.568627, 0.568627, 0.568627, 0.768627)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -662.0
+offset_top = -367.0
+offset_right = -22.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+texture = ExtResource("1_0rxo1")
+
+[node name="Label" type="Label" parent="PauseScreen"]
+offset_left = -50.0
+offset_top = -32.0
+offset_right = 46.0
+text = "PAUSED"
+label_settings = SubResource("LabelSettings_xgp3s")
+horizontal_alignment = 1
+
 [connection signal="toggled" from="Hud/CheckBox" to="AudioManager" method="_on_check_box_toggled"]
 [connection signal="pressed" from="GameOverUI/Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="HighscoreScreen/Submit" to="HighscoreScreen" method="_on_submit_pressed"]

@@ -11,11 +11,15 @@ var max_time = 5
 @onready var game_manager = get_node("/root/GameManager")
 @onready var camera : MainCamera = get_node("/root/GameManager/MainCamera")
 @onready var trail : Line2D = get_node("Trail")
+
+
 func _ready():
 	create_code()
 	timer = max_time
 		
 func _physics_process(delta):
+	if game_manager.is_paused:
+		return
 	if timer > 0:
 		timer -= delta
 	elif !is_flying:
