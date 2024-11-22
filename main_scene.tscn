@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://djpvyl67rx3nr"]
+[gd_scene load_steps=28 format=3 uid="uid://djpvyl67rx3nr"]
 
 [ext_resource type="Texture2D" uid="uid://byx5vj3mgwdh5" path="res://assets/sprites/background.png" id="1_0rxo1"]
 [ext_resource type="Script" path="res://components/game_manager.gd" id="1_weitp"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://leaderboard.gd" id="10_gguyh"]
 [ext_resource type="Script" path="res://highscore_screen.gd" id="10_jm4ke"]
 [ext_resource type="PackedScene" uid="uid://b5akxcvevnxdn" path="res://components/loot_locker.tscn" id="12_rj0ox"]
+[ext_resource type="Shader" path="res://scan_lines.gdshader" id="15_4nuyl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_40gjc"]
 line_spacing = 0.0
@@ -66,6 +67,48 @@ font_color = Color(0.960784, 0.823529, 0.721569, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mhv03"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 
+[sub_resource type="Environment" id="Environment_rc1m0"]
+background_mode = 3
+glow_enabled = true
+glow_intensity = 0.72
+glow_strength = 1.1
+glow_blend_mode = 1
+glow_hdr_threshold = 0.7
+glow_hdr_scale = 4.0
+fog_light_color = Color(0.188235, 0.207843, 0.239216, 1)
+fog_light_energy = 0.0
+fog_sun_scatter = 0.25
+fog_density = 0.781
+fog_sky_affect = 0.925
+fog_height = -14.1
+fog_height_density = 0.004
+adjustment_enabled = true
+adjustment_brightness = 0.67
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_logpy"]
+shader = ExtResource("15_4nuyl")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.063
+shader_parameter/scanlines_width = 0.02
+shader_parameter/grille_opacity = 0.11
+shader_parameter/resolution = Vector2(640, 360)
+shader_parameter/pixelate = false
+shader_parameter/roll = false
+shader_parameter/roll_speed = 8.0
+shader_parameter/roll_size = 73.027
+shader_parameter/roll_variation = 1.751
+shader_parameter/distort_intensity = 0.0
+shader_parameter/noise_opacity = 0.007
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.0
+shader_parameter/aberration = 4.75e-08
+shader_parameter/brightness = 1.355
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 0.035
+shader_parameter/clip_warp = true
+shader_parameter/vignette_intensity = 0.245
+shader_parameter/vignette_opacity = 1.0
+
 [node name="GameManager" type="Node2D"]
 script = ExtResource("1_weitp")
 
@@ -73,6 +116,7 @@ script = ExtResource("1_weitp")
 script = ExtResource("2_g5lgf")
 
 [node name="Background" type="TextureRect" parent="."]
+modulate = Color(0.95, 0.95, 0.95, 1)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -87,6 +131,7 @@ grow_vertical = 2
 texture = ExtResource("1_0rxo1")
 
 [node name="Hud" type="TextureRect" parent="."]
+modulate = Color(0.84, 0.84, 0.84, 1)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -139,6 +184,7 @@ label_settings = SubResource("LabelSettings_40gjc")
 horizontal_alignment = 1
 
 [node name="Score_UI" type="Control" parent="Hud"]
+modulate = Color(1.1, 1.1, 1.1, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -172,6 +218,7 @@ text = "100"
 label_settings = SubResource("LabelSettings_nfbrr")
 
 [node name="Lives" type="Control" parent="Hud"]
+modulate = Color(1.1, 1.1, 1.1, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -207,6 +254,7 @@ label_settings = SubResource("LabelSettings_nfbrr")
 horizontal_alignment = 1
 
 [node name="CheckBox" type="CheckBox" parent="Hud"]
+self_modulate = Color(0.9, 0.9, 0.9, 1)
 layout_mode = 0
 offset_left = 549.0
 offset_top = 155.0
@@ -224,6 +272,7 @@ button_pressed = true
 text = "Audio"
 
 [node name="LaunchCodes" type="Node2D" parent="."]
+modulate = Color(0.96, 0.96, 0.96, 1)
 
 [node name="LaunchCode0" parent="LaunchCodes" instance=ExtResource("4_a0b32")]
 position = Vector2(-224, 100)
@@ -249,21 +298,25 @@ position = Vector2(0, 152)
 
 [node name="Arrow0" type="Sprite2D" parent="InputDisplay"]
 visible = false
+modulate = Color(0.88, 0.88, 0.88, 1)
 position = Vector2(-40, 0)
 texture = ExtResource("5_dfjue")
 
 [node name="Arrow1" type="Sprite2D" parent="InputDisplay"]
 visible = false
+modulate = Color(0.88, 0.88, 0.88, 1)
 position = Vector2(-16, 0)
 texture = ExtResource("5_dfjue")
 
 [node name="Arrow2" type="Sprite2D" parent="InputDisplay"]
 visible = false
+modulate = Color(0.88, 0.88, 0.88, 1)
 position = Vector2(16, 0)
 texture = ExtResource("5_dfjue")
 
 [node name="Arrow3" type="Sprite2D" parent="InputDisplay"]
 visible = false
+modulate = Color(0.88, 0.88, 0.88, 1)
 position = Vector2(40, 0)
 texture = ExtResource("5_dfjue")
 
@@ -547,6 +600,7 @@ flat = true
 [node name="LootLocker" parent="." instance=ExtResource("12_rj0ox")]
 
 [node name="StartScreen" type="TextureRect" parent="."]
+visible = false
 offset_right = 40.0
 offset_bottom = 40.0
 
@@ -567,6 +621,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_0rxo1")
 
 [node name="Label" type="Label" parent="StartScreen"]
+layout_mode = 0
 offset_left = -168.0
 offset_top = -13.0
 offset_right = 146.0
@@ -598,12 +653,33 @@ scale = Vector2(2, 2)
 texture = ExtResource("1_0rxo1")
 
 [node name="Label" type="Label" parent="PauseScreen"]
+layout_mode = 0
 offset_left = -50.0
 offset_top = -32.0
 offset_right = 46.0
 text = "PAUSED"
 label_settings = SubResource("LabelSettings_xgp3s")
 horizontal_alignment = 1
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_rc1m0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_logpy")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -392.0
+offset_top = -200.0
+offset_right = -392.0
+offset_bottom = -200.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+mouse_filter = 2
 
 [connection signal="toggled" from="Hud/CheckBox" to="AudioManager" method="_on_check_box_toggled"]
 [connection signal="pressed" from="GameOverUI/Retry" to="." method="_on_retry_pressed"]

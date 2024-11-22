@@ -43,7 +43,7 @@ func _input(event):
 	if event.is_action_pressed("pause") and game_started:
 		toggle_pause(!is_paused)
 
-	if is_paused:
+	if is_paused or lives <= 0:
 		return
 	if event.is_action_pressed("ui_up"):
 		play_select_sfx()

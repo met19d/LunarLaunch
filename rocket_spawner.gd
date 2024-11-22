@@ -25,6 +25,8 @@ func _process(delta):
 			if get_child_count() < max_spawn and spawn_rate <= 4:
 				var rand = randi_range(0, 10)
 				if rand > 6:
+					if rand > 7 and get_child_count() < max_spawn - 2:
+						spawn()
 					spawn()
 		spawn_tick = spawn_rate
 

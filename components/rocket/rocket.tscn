@@ -12,6 +12,7 @@ point_count = 2
 colors = PackedColorArray(0.960784, 0.823529, 0.721569, 1, 0.901961, 0.482353, 0.545098, 1)
 
 [node name="Rocket" type="CharacterBody2D"]
+self_modulate = Color(15.384, 14.793, 14.792, 1)
 script = ExtResource("1_l7odk")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -19,6 +20,7 @@ texture_filter = 3
 texture = ExtResource("2_brihb")
 
 [node name="Trail" type="Line2D" parent="."]
+modulate = Color(1.11, 1.11, 1.11, 1)
 width_curve = SubResource("Curve_40fxf")
 gradient = SubResource("Gradient_u3g5v")
 joint_mode = 1
