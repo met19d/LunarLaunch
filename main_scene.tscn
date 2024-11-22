@@ -253,13 +253,12 @@ text = "3"
 label_settings = SubResource("LabelSettings_nfbrr")
 horizontal_alignment = 1
 
-[node name="CheckBox" type="CheckBox" parent="Hud"]
+[node name="CheckBox" type="CheckBox" parent="."]
 self_modulate = Color(0.9, 0.9, 0.9, 1)
-layout_mode = 0
-offset_left = 549.0
-offset_top = 155.0
-offset_right = 622.0
-offset_bottom = 186.0
+offset_left = 224.0
+offset_top = 128.0
+offset_right = 297.0
+offset_bottom = 159.0
 focus_mode = 0
 theme_override_colors/font_color = Color(0.576471, 0.184314, 0.482353, 1)
 theme_override_colors/font_pressed_color = Color(0.901961, 0.482353, 0.545098, 1)
@@ -270,6 +269,23 @@ theme_override_icons/checked = ExtResource("6_eldg7")
 theme_override_icons/unchecked = ExtResource("7_7yswk")
 button_pressed = true
 text = "Audio"
+
+[node name="CheckBox2" type="CheckBox" parent="."]
+self_modulate = Color(0.9, 0.9, 0.9, 1)
+offset_left = 224.0
+offset_top = 151.205
+offset_right = 297.0
+offset_bottom = 182.205
+focus_mode = 0
+theme_override_colors/font_color = Color(0.576471, 0.184314, 0.482353, 1)
+theme_override_colors/font_pressed_color = Color(0.901961, 0.482353, 0.545098, 1)
+theme_override_colors/font_hover_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_colors/font_hover_pressed_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_fonts/font = ExtResource("7_vkvnv")
+theme_override_icons/checked = ExtResource("6_eldg7")
+theme_override_icons/unchecked = ExtResource("7_7yswk")
+button_pressed = true
+text = "CRT-fx"
 
 [node name="LaunchCodes" type="Node2D" parent="."]
 modulate = Color(0.96, 0.96, 0.96, 1)
@@ -664,10 +680,10 @@ horizontal_alignment = 1
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_rc1m0")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Overlay" type="CanvasLayer" parent="."]
 follow_viewport_enabled = true
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+[node name="ColorRect" type="ColorRect" parent="Overlay"]
 material = SubResource("ShaderMaterial_logpy")
 anchors_preset = 15
 anchor_right = 1.0
@@ -681,7 +697,8 @@ grow_vertical = 2
 scale = Vector2(1.2, 1.2)
 mouse_filter = 2
 
-[connection signal="toggled" from="Hud/CheckBox" to="AudioManager" method="_on_check_box_toggled"]
+[connection signal="toggled" from="CheckBox" to="AudioManager" method="_on_check_box_toggled"]
+[connection signal="toggled" from="CheckBox2" to="." method="_on_check_box_2_toggled"]
 [connection signal="pressed" from="GameOverUI/Retry" to="." method="_on_retry_pressed"]
 [connection signal="pressed" from="HighscoreScreen/Submit" to="HighscoreScreen" method="_on_submit_pressed"]
 [connection signal="update_board" from="LootLocker" to="GameOverUI/Leaderboard" method="_on_loot_locker_update_board"]

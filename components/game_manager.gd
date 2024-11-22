@@ -154,3 +154,7 @@ func toggle_pause(pause : bool):
 		AudioManager.main_theme.volume_db -= 15
 	else:
 		AudioManager.main_theme.volume_db += 15	
+
+
+func _on_check_box_2_toggled(toggled_on):
+	$Overlay.visible = toggled_on
