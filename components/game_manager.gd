@@ -116,6 +116,7 @@ func remove_life(location):
 	var launch_code : LaunchCode = launch_codes.get_node("LaunchCode"+str(location))
 	launch_code.reset()
 	if lives == 0:
+		reset_input()
 		loot_locker._get_leaderboards()
 		hud.visible = false
 		rocket_spawner.toggle_active(false)

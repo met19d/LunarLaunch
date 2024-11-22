@@ -18,7 +18,7 @@ volume_db = -10.637
 
 [node name="SelectSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_0ay0b")
-volume_db = -11.5
+volume_db = -9.0
 pitch_scale = 0.7
 
 [node name="LaunchSFX" type="AudioStreamPlayer2D" parent="."]
