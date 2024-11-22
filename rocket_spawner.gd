@@ -22,11 +22,16 @@ func _process(delta):
 	else:
 		if get_child_count() <= max_spawn:
 			spawn()
-			if get_child_count() < max_spawn and spawn_rate <= 4:
+			if get_child_count() < max_spawn and spawn_rate < 4:
 				var rand = randi_range(0, 10)
-				if rand > 6:
-					if rand > 7 and get_child_count() < max_spawn - 2:
-						spawn()
+				if rand > 4:
+					#tripple spawn
+					if get_child_count() < max_spawn - 1:
+						if rand > 6 and spawn_rate < 4:
+							spawn()
+						elif rand > 4 and spawn_rate < 2:
+							spawn()
+					#second spawn
 					spawn()
 		spawn_tick = spawn_rate
 
@@ -34,7 +39,7 @@ func spawn():
 	if get_child_count() > 4:
 		return
 		
-	if spawn_rate >= 0.75:
+	if spawn_rate >= 0.5:
 		spawn_rate -= 0.25
 	var current_children = get_children()
 	var available_spawn_points = []

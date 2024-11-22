@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Rocket
 
-var speed : float = -250.0
+var speed : float = -300.0
 var target_speed : float = 0.0
 var required_combo : Array = []
 var location_id : int = 0
@@ -22,7 +22,7 @@ func _ready():
 func _physics_process(delta):
 	if game_manager.is_paused:
 		return
-	if global_position.y < -550:
+	if global_position.y < -540:
 		queue_free()
 	
 	if timer > 0:
