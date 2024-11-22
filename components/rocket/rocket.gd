@@ -23,7 +23,6 @@ func _physics_process(delta):
 	if game_manager.is_paused:
 		return
 	if global_position.y < -550:
-		print_debug("released")
 		queue_free()
 	
 	if timer > 0:
