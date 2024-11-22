@@ -11,6 +11,8 @@ var max_time = 5
 @onready var game_manager = get_node("/root/GameManager")
 @onready var camera : MainCamera = get_node("/root/GameManager/MainCamera")
 @onready var trail : Line2D = get_node("Trail")
+@onready var sprite = $Sprite2D
+@onready var s = 0
 
 
 func _ready():
@@ -23,11 +25,15 @@ func _physics_process(delta):
 	if global_position.y < -550:
 		print_debug("released")
 		queue_free()
+	
 	if timer > 0:
 		timer -= delta
+		if !is_flying:
+			s += delta*0.15
 	elif !is_flying:
 		game_manager.remove_life(location_id)
 		destroy()
+	sprite.modulate = Color.from_hsv(0, s, 1)
 	velocity.y = lerp(velocity.y, target_speed, 0.005)
 	move_and_slide()
 
