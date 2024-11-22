@@ -29,7 +29,7 @@ func _physics_process(delta):
 	if timer > 0:
 		timer -= delta
 		if !is_flying:
-			s += delta*0.15
+			s += delta*0.123
 	elif !is_flying:
 		game_manager.remove_life(location_id)
 		destroy()
