@@ -83,7 +83,7 @@ fog_sky_affect = 0.925
 fog_height = -14.1
 fog_height_density = 0.004
 adjustment_enabled = true
-adjustment_brightness = 0.67
+adjustment_brightness = 0.55
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_logpy"]
 shader = ExtResource("15_4nuyl")
