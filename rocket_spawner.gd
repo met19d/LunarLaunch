@@ -54,6 +54,18 @@ func spawn():
 	while(rand not in available_spawn_points):
 		rand = randi_range(0, 5)	
 	var instance : Rocket = rocket.instantiate()
+	while(true):
+		var instance_code: Array = instance.get_code()
+		var contains_subarray : bool = false	
+		for child: Rocket in get_children():
+			var child_code: Array = child.get_code()
+			if child_code.size() > instance_code.size():
+				contains_subarray = is_subarray(child_code, instance_code)
+			if contains_subarray:
+				break
+		if !contains_subarray:
+			break
+		instance.create_code()
 	add_child(instance)
 	instance.position = spawn_locations[rand]
 	instance.location_id = rand
@@ -71,3 +83,18 @@ func clear_rockets():
 	for i in range(0, 5):
 		var launch_code: LaunchCode = launch_codes.get_node("LaunchCode"+str(i))
 		launch_code.reset()
+
+#checks if B is subarray of A
+func is_subarray(A: Array, B: Array) -> bool:
+	var n = A.size()
+	var m = B.size()
+
+	for i in range(n - m + 1):
+		var is_match = true
+		for j in range(m):
+			if A[i + j] != B[j]:
+				is_match = false
+				break
+		if is_match:
+			return true  # Subarray found
+	return false  # Subarray not found

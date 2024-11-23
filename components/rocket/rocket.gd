@@ -37,6 +37,7 @@ func _physics_process(delta):
 	move_and_slide()
 
 func create_code():
+	required_combo.clear()
 	var code_size = randi_range(2,4)
 	for i in range(0, code_size):
 		var rand = randi_range(0, 3)

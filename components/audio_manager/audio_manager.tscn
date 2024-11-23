@@ -37,8 +37,8 @@ volume_db = -18.321
 
 [node name="Success" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_15ibc")
-volume_db = -9.993
+volume_db = -13.741
 
 [node name="Multi" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_vba1n")
-volume_db = -2.811
+volume_db = -2.6

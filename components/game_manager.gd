@@ -136,7 +136,7 @@ func play_success_sfx():
 	var change_amt = streak
 	if change_amt  > 75:
 		change_amt = 75
-	AudioManager.success.pitch_scale = randf_range(0.88, 0.93) + change_amt*.01
+	AudioManager.success.pitch_scale = randf_range(0.74, 0.79) + change_amt*.01
 	AudioManager.success.play()
 	
 func play_multi_sfx():
