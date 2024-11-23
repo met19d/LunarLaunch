@@ -25,13 +25,14 @@ func _ready():
 	loot_locker.player_id = OS.get_unique_id()
 	loot_locker._authentication_request()
 	score_label.text = str(score)
-	lives_label.text = str(lives)
+	set_lives_label()
 	game_over.visible = false
 	start_screen.visible = true
 func _process(delta):
 	pass
 func start():
 	rocket_spawner.toggle_active(true)
+	AudioManager.main_theme.play()
 	AudioManager.main_theme.play()
 	game_started = true
 	start_screen.visible = false
@@ -112,7 +113,7 @@ func score_increase(amount):
 func remove_life(location):
 	streak = 0
 	lives -= 1
-	lives_label.text = str(lives)
+	set_lives_label()
 	var launch_code : LaunchCode = launch_codes.get_node("LaunchCode"+str(location))
 	launch_code.reset()
 	if lives == 0:
@@ -156,6 +157,13 @@ func toggle_pause(pause : bool):
 	else:
 		AudioManager.main_theme.volume_db += 15	
 
-
+func set_lives_label():
+	var lives_string : String = ""
+	for life in lives:
+		lives_string += "I "
+	lives_label.text = str(lives_string)
+	
 func _on_check_box_2_toggled(toggled_on):
 	$Overlay.visible = toggled_on
+	var env : Environment = $WorldEnvironment.get_environment()
+	env.glow_enabled = toggled_on
