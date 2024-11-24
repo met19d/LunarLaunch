@@ -40,8 +40,15 @@ func spawn():
 	if get_child_count() > 4:
 		return
 		
-	if spawn_rate >= 0.5:
+	if spawn_rate > 0.5:
 		spawn_rate -= 0.25
+	if get_parent().score >= 2000:
+		spawn_rate = 0.001
+	elif get_parent().score >= 900:
+		spawn_rate = 0.01
+	elif get_parent().score >= 750:
+		spawn_rate = 0.1
+		
 	var current_children = get_children()
 	var available_spawn_points = []
 	for i in range(0, 5):
