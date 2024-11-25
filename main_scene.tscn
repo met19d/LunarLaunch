@@ -570,23 +570,23 @@ horizontal_alignment = 1
 
 [node name="Score" type="Label" parent="HighscoreScreen/Score_UI"]
 layout_mode = 0
-offset_left = 36.0
+offset_left = 1.355
 offset_top = 67.0
-offset_right = 84.0
+offset_right = 121.355
 offset_bottom = 99.0
-text = "123"
+text = "000"
 label_settings = SubResource("LabelSettings_nfbrr")
 horizontal_alignment = 1
 
 [node name="LineEdit" type="LineEdit" parent="HighscoreScreen"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 0
-offset_left = -80.0
+offset_left = -75.88
 offset_top = 16.0
-offset_right = 70.0
+offset_right = 74.12
 offset_bottom = 47.0
 theme_override_colors/font_color = Color(0.901961, 0.482353, 0.545098, 1)
-theme_override_colors/font_placeholder_color = Color(0.576471, 0.184314, 0.482353, 0.67451)
+theme_override_colors/font_placeholder_color = Color(0.67451, 0.235294, 0.564706, 0.290196)
 theme_override_colors/font_outline_color = Color(0.960784, 0.823529, 0.721569, 1)
 theme_override_fonts/font = ExtResource("7_vkvnv")
 theme_override_styles/focus = SubResource("StyleBoxFlat_mhv03")
@@ -596,10 +596,10 @@ flat = true
 
 [node name="Submit" type="Button" parent="HighscoreScreen"]
 layout_mode = 0
-offset_left = -55.0
-offset_top = 53.0
-offset_right = 49.0
-offset_bottom = 93.0
+offset_left = -52.165
+offset_top = 48.0
+offset_right = 51.835
+offset_bottom = 88.0
 focus_mode = 0
 theme_override_colors/font_color = Color(0.129412, 0.0980392, 0.235294, 1)
 theme_override_colors/font_pressed_color = Color(0.960784, 0.823529, 0.721569, 1)
