@@ -1,5 +1,6 @@
 extends Node2D
 
+@onready var game_manager : GameManager = get_tree().get_first_node_in_group("GameManager")
 var max_spawn = 5
 var spawn_tick = 0
 var spawn_rate = 5
@@ -62,18 +63,6 @@ func spawn():
 	while(rand not in available_spawn_points):
 		rand = randi_range(0, 5)	
 	var instance : Rocket = rocket.instantiate()
-	while(true):
-		var instance_code: Array = instance.get_code()
-		var contains_subarray : bool = false	
-		for child: Rocket in get_children():
-			var child_code: Array = child.get_code()
-			if child_code.size() > instance_code.size():
-				contains_subarray = is_subarray(child_code, instance_code)
-			if contains_subarray:
-				break
-		if !contains_subarray:
-			break
-		instance.create_code()
 	add_child(instance)
 	instance.position = spawn_locations[rand]
 	instance.location_id = rand

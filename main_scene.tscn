@@ -6,12 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://crfm82bf01unl" path="res://components/launch_code/launch_code.tscn" id="4_a0b32"]
 [ext_resource type="Script" path="res://rocket_spawner.gd" id="4_rpecu"]
 [ext_resource type="Texture2D" uid="uid://cg3kfo08ne3lj" path="res://assets/sprites/hud.png" id="4_rqkh7"]
-[ext_resource type="Texture2D" uid="uid://cb6rbpfahf8cl" path="res://assets/sprites/input_arrow.png" id="5_dfjue"]
 [ext_resource type="Texture2D" uid="uid://cf2uqoa61xrn4" path="res://assets/sprites/check_on.png" id="6_eldg7"]
 [ext_resource type="Texture2D" uid="uid://bf0hkflwlb56a" path="res://assets/sprites/check_off.png" id="7_7yswk"]
 [ext_resource type="FontFile" uid="uid://dc3vfmk8i7cso" path="res://assets/fonts/PixelOperatorHB.ttf" id="7_vkvnv"]
 [ext_resource type="PackedScene" uid="uid://tu0x70ep6vef" path="res://components/audio_manager/audio_manager.tscn" id="9_kjs1w"]
 [ext_resource type="Script" path="res://leaderboard.gd" id="10_gguyh"]
+[ext_resource type="Texture2D" uid="uid://d3gsr6obpqpp7" path="res://assets/sprites/input_box.png" id="10_igj0h"]
 [ext_resource type="Script" path="res://highscore_screen.gd" id="10_jm4ke"]
 [ext_resource type="PackedScene" uid="uid://b5akxcvevnxdn" path="res://components/loot_locker.tscn" id="12_rj0ox"]
 [ext_resource type="Shader" path="res://scan_lines.gdshader" id="15_4nuyl"]
@@ -69,7 +69,6 @@ bg_color = Color(0.6, 0.6, 0.6, 0)
 
 [sub_resource type="Environment" id="Environment_rc1m0"]
 background_mode = 3
-glow_enabled = true
 glow_intensity = 0.72
 glow_strength = 1.1
 glow_blend_mode = 1
@@ -109,7 +108,7 @@ shader_parameter/clip_warp = true
 shader_parameter/vignette_intensity = 0.245
 shader_parameter/vignette_opacity = 1.0
 
-[node name="GameManager" type="Node2D"]
+[node name="GameManager" type="Node2D" groups=["GameManager"]]
 script = ExtResource("1_weitp")
 
 [node name="MainCamera" type="Camera2D" parent="."]
@@ -122,10 +121,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -320.0
-offset_top = -180.0
-offset_right = 320.0
-offset_bottom = 180.0
+offset_left = -880.0
+offset_top = -495.0
+offset_right = 880.0
+offset_bottom = 495.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_0rxo1")
@@ -146,6 +145,7 @@ grow_vertical = 2
 texture = ExtResource("4_rqkh7")
 
 [node name="Label" type="Label" parent="Hud"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -168,6 +168,7 @@ label_settings = SubResource("LabelSettings_40gjc")
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="Hud"]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -187,6 +188,7 @@ label_settings = SubResource("LabelSettings_40gjc")
 horizontal_alignment = 1
 
 [node name="Score_UI" type="Control" parent="Hud"]
+visible = false
 modulate = Color(1.1, 1.1, 1.1, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -202,6 +204,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="Hud/Score_UI"]
+visible = false
 layout_mode = 0
 offset_left = -12.0
 offset_top = -8.0
@@ -212,6 +215,7 @@ label_settings = SubResource("LabelSettings_xgp3s")
 horizontal_alignment = 1
 
 [node name="Score" type="Label" parent="Hud/Score_UI"]
+visible = false
 layout_mode = 0
 offset_left = -11.0
 offset_top = 32.0
@@ -221,6 +225,7 @@ text = "100"
 label_settings = SubResource("LabelSettings_nfbrr")
 
 [node name="Lives" type="Control" parent="Hud"]
+visible = false
 modulate = Color(1.1, 1.1, 1.1, 1)
 layout_mode = 1
 anchors_preset = 8
@@ -236,6 +241,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="Hud/Lives"]
+visible = false
 layout_mode = 0
 offset_left = -12.0
 offset_top = -8.0
@@ -246,6 +252,7 @@ label_settings = SubResource("LabelSettings_xgp3s")
 horizontal_alignment = 1
 
 [node name="Lives" type="Label" parent="Hud/Lives"]
+visible = false
 layout_mode = 0
 offset_left = -11.5
 offset_top = 18.0
@@ -256,16 +263,17 @@ text = "I I I"
 label_settings = SubResource("LabelSettings_nfbrr")
 
 [node name="CheckBox" type="CheckBox" parent="."]
+visible = false
 self_modulate = Color(0.9, 0.9, 0.9, 1)
 offset_left = 224.0
 offset_top = 128.0
 offset_right = 297.0
 offset_bottom = 159.0
 focus_mode = 0
-theme_override_colors/font_color = Color(0.576471, 0.184314, 0.482353, 1)
-theme_override_colors/font_pressed_color = Color(0.901961, 0.482353, 0.545098, 1)
-theme_override_colors/font_hover_color = Color(0.960784, 0.823529, 0.721569, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_colors/font_hover_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_colors/font_pressed_color = Color(0.901961, 0.482353, 0.545098, 1)
+theme_override_colors/font_color = Color(0.576471, 0.184314, 0.482353, 1)
 theme_override_fonts/font = ExtResource("7_vkvnv")
 theme_override_icons/checked = ExtResource("6_eldg7")
 theme_override_icons/unchecked = ExtResource("7_7yswk")
@@ -273,16 +281,17 @@ button_pressed = true
 text = "Audio"
 
 [node name="CheckBox2" type="CheckBox" parent="."]
+visible = false
 self_modulate = Color(0.9, 0.9, 0.9, 1)
 offset_left = 224.0
 offset_top = 151.205
 offset_right = 297.0
 offset_bottom = 182.205
 focus_mode = 0
-theme_override_colors/font_color = Color(0.576471, 0.184314, 0.482353, 1)
-theme_override_colors/font_pressed_color = Color(0.901961, 0.482353, 0.545098, 1)
-theme_override_colors/font_hover_color = Color(0.960784, 0.823529, 0.721569, 1)
 theme_override_colors/font_hover_pressed_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_colors/font_hover_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_colors/font_pressed_color = Color(0.901961, 0.482353, 0.545098, 1)
+theme_override_colors/font_color = Color(0.576471, 0.184314, 0.482353, 1)
 theme_override_fonts/font = ExtResource("7_vkvnv")
 theme_override_icons/checked = ExtResource("6_eldg7")
 theme_override_icons/unchecked = ExtResource("7_7yswk")
@@ -311,32 +320,29 @@ position = Vector2(224, 100)
 script = ExtResource("4_rpecu")
 launch_codes = NodePath("../LaunchCodes")
 
-[node name="InputDisplay" type="Node2D" parent="."]
-position = Vector2(0, 152)
+[node name="Input" type="Node2D" parent="."]
+position = Vector2(0, 159)
 
-[node name="Arrow0" type="Sprite2D" parent="InputDisplay"]
-visible = false
-modulate = Color(0.88, 0.88, 0.88, 1)
-position = Vector2(-40, 0)
-texture = ExtResource("5_dfjue")
+[node name="InputBox" type="Sprite2D" parent="Input"]
+texture = ExtResource("10_igj0h")
 
-[node name="Arrow1" type="Sprite2D" parent="InputDisplay"]
-visible = false
-modulate = Color(0.88, 0.88, 0.88, 1)
-position = Vector2(-16, 0)
-texture = ExtResource("5_dfjue")
-
-[node name="Arrow2" type="Sprite2D" parent="InputDisplay"]
-visible = false
-modulate = Color(0.88, 0.88, 0.88, 1)
-position = Vector2(16, 0)
-texture = ExtResource("5_dfjue")
-
-[node name="Arrow3" type="Sprite2D" parent="InputDisplay"]
-visible = false
-modulate = Color(0.88, 0.88, 0.88, 1)
-position = Vector2(40, 0)
-texture = ExtResource("5_dfjue")
+[node name="InputDisplay" type="RichTextLabel" parent="Input"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -16.0
+offset_right = 74.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.105882, 0.0862745, 0.2, 1)
+theme_override_fonts/normal_font = ExtResource("7_vkvnv")
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "12345678"
 
 [node name="AudioManager" parent="." instance=ExtResource("9_kjs1w")]
 
@@ -371,11 +377,11 @@ offset_left = -42.0
 offset_top = 85.0
 offset_right = 46.0
 offset_bottom = 125.0
-theme_override_colors/font_color = Color(0.129412, 0.0980392, 0.235294, 1)
-theme_override_colors/font_pressed_color = Color(0.960784, 0.823529, 0.721569, 1)
-theme_override_colors/font_hover_color = Color(0.901961, 0.482353, 0.545098, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
 theme_override_colors/font_hover_pressed_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_colors/font_hover_color = Color(0.901961, 0.482353, 0.545098, 1)
+theme_override_colors/font_pressed_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(0.129412, 0.0980392, 0.235294, 1)
 theme_override_colors/font_outline_color = Color(0.960784, 0.823529, 0.721569, 1)
 theme_override_colors/icon_hover_color = Color(0, 0, 0, 0)
 theme_override_constants/outline_size = 4
@@ -585,9 +591,9 @@ offset_left = -75.88
 offset_top = 16.0
 offset_right = 74.12
 offset_bottom = 47.0
-theme_override_colors/font_color = Color(0.901961, 0.482353, 0.545098, 1)
 theme_override_colors/font_placeholder_color = Color(0.67451, 0.235294, 0.564706, 0.290196)
 theme_override_colors/font_outline_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_colors/font_color = Color(0.901961, 0.482353, 0.545098, 1)
 theme_override_fonts/font = ExtResource("7_vkvnv")
 theme_override_styles/focus = SubResource("StyleBoxFlat_mhv03")
 placeholder_text = "Enter Name"
@@ -601,12 +607,12 @@ offset_top = 48.0
 offset_right = 51.835
 offset_bottom = 88.0
 focus_mode = 0
-theme_override_colors/font_color = Color(0.129412, 0.0980392, 0.235294, 1)
-theme_override_colors/font_pressed_color = Color(0.960784, 0.823529, 0.721569, 1)
-theme_override_colors/font_hover_color = Color(0.901961, 0.482353, 0.545098, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
-theme_override_colors/font_hover_pressed_color = Color(0.960784, 0.823529, 0.721569, 1)
 theme_override_colors/font_disabled_color = Color(0.431373, 0.121569, 0.356863, 0.831373)
+theme_override_colors/font_hover_pressed_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_colors/font_hover_color = Color(0.901961, 0.482353, 0.545098, 1)
+theme_override_colors/font_pressed_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 0)
+theme_override_colors/font_color = Color(0.129412, 0.0980392, 0.235294, 1)
 theme_override_colors/font_outline_color = Color(0.964706, 0.835294, 0.741176, 1)
 theme_override_colors/icon_focus_color = Color(0, 0, 0, 0)
 theme_override_constants/outline_size = 4
@@ -683,6 +689,7 @@ horizontal_alignment = 1
 environment = SubResource("Environment_rc1m0")
 
 [node name="Overlay" type="CanvasLayer" parent="."]
+visible = false
 follow_viewport_enabled = true
 
 [node name="ColorRect" type="ColorRect" parent="Overlay"]

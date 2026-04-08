@@ -1,28 +1,28 @@
 [gd_scene load_steps=3 format=3 uid="uid://crfm82bf01unl"]
 
-[ext_resource type="Texture2D" uid="uid://dbsc6k3qjhqtw" path="res://assets/sprites/code_arrow.png" id="1_0xaae"]
 [ext_resource type="Script" path="res://components/launch_code/launch_code.gd" id="1_wwise"]
+[ext_resource type="FontFile" uid="uid://dc3vfmk8i7cso" path="res://assets/fonts/PixelOperatorHB.ttf" id="3_k6p6r"]
 
-[node name="LaunchCode" type="Node2D"]
+[node name="LaunchCode" type="Node2D" node_paths=PackedStringArray("text_label")]
 position = Vector2(-216, 100)
 script = ExtResource("1_wwise")
+text_label = NodePath("RichTextLabel")
 
-[node name="Arrow0" type="Sprite2D" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
 visible = false
-position = Vector2(-24, 0)
-texture = ExtResource("1_0xaae")
-
-[node name="Arrow1" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-8, 0)
-texture = ExtResource("1_0xaae")
-
-[node name="Arrow2" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(8, 0)
-texture = ExtResource("1_0xaae")
-
-[node name="Arrow3" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(24, 0)
-texture = ExtResource("1_0xaae")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.0
+offset_top = 4.0
+offset_right = 56.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/default_color = Color(0.960784, 0.823529, 0.721569, 1)
+theme_override_fonts/normal_font = ExtResource("3_k6p6r")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[center]WORD[/center]"
