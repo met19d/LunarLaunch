@@ -64,9 +64,11 @@ func spawn():
 		rand = randi_range(0, 5)	
 	var instance : Rocket = rocket.instantiate()
 	add_child(instance)
-	instance.position = spawn_locations[rand]
 	instance.location_id = rand
 	var launch_code: LaunchCode = launch_codes.get_node("LaunchCode"+str(instance.location_id))
+	instance.global_position = launch_code.global_position
+	instance.global_position.y -= 66
+
 	launch_code.set_code(instance.get_code())
 	
 func toggle_active(active : bool):

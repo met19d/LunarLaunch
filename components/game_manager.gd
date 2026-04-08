@@ -3,11 +3,11 @@ class_name GameManager
 
 var input_queue : Array = []
 enum {LEFT, UP, RIGHT, DOWN}
-@onready var input_display : RichTextLabel = get_node("Input/InputDisplay")
+@onready var input_display : RichTextLabel = get_node("Hud/Input/InputDisplay")
 @onready var launch_codes : Node2D = get_node("LaunchCodes")
-@onready var score_label : Label  = get_node("Hud/Score_UI/Score")
+@onready var score_label : RichTextLabel  = get_node("Hud/Score_UI/Score")
 @onready var camera : MainCamera = get_node("MainCamera")
-@onready var hud : TextureRect = get_node("Hud")
+@onready var hud : Control = get_node("Hud")
 @onready var game_over : Control = get_node("GameOverUI")
 @onready var highscore_screen = $HighscoreScreen
 var score = 0
@@ -38,8 +38,7 @@ func _process(delta):
 	pass
 func start():
 	rocket_spawner.toggle_active(true)
-	AudioManager.main_theme.play()
-	AudioManager.main_theme.play()
+	#AudioManager.main_theme.play()
 	game_started = true
 	start_screen.visible = false
 	
@@ -56,9 +55,11 @@ func _input(event):
 		if event.keycode >= KEY_A and event.keycode <= KEY_Z and input_text.length() < 8:
 			print_debug(char)
 			input_text += char.to_lower()
+			play_select_sfx()
 			update_input_display()
 		elif event.keycode == KEY_BACKSPACE:
 			input_text = input_text.substr(0, input_text.length()-1)
+			play_delete_sfx()
 			update_input_display()
 		elif event.keycode == KEY_ENTER or event.keycode == KEY_SPACE:
 			submit()
@@ -106,6 +107,7 @@ func submit():
 			launch_code.reset()
 			multi_counter += 1
 	if rockets_launched:
+		camera.apply_shake(10, 6)
 		if multi_counter > 1:
 			play_multi_sfx()
 			if multi_counter > 3:
@@ -115,6 +117,9 @@ func submit():
 		else:
 			play_success_sfx()	
 		reset_input()
+	else:
+		AudioManager.clear_sfx.play()
+		camera.apply_shake(4, 14)
 	
 func score_increase(amount):
 	streak += 1
@@ -141,9 +146,13 @@ func remove_life(location):
 	
 
 func play_select_sfx():
-	AudioManager.select_sfx.pitch_scale = randf_range(0.65, 0.75)
-	AudioManager.select_sfx.play()
-	
+	#AudioManager.select_sfx.pitch_scale = randf_range(0.9, 1.1)
+	#AudioManager.select_sfx.play()
+	AudioManager.play_sfx(AudioManager.select_sfx.stream)
+
+func play_delete_sfx():
+	AudioManager.play_delete_sfx()
+
 func play_success_sfx():
 	var change_amt = streak
 	if change_amt  > 75:
@@ -173,6 +182,8 @@ func set_lives_label():
 	for life in lives:
 		lives_string += "I "
 	lives_label.text = str(lives_string)
+	if lives <= 1:
+		lives_label.get_parent().get_node("Label").text = "[shake][wave amp=25.0 freq=5.0]LIVES[/wave][/shake]"
 	
 func _on_check_box_2_toggled(toggled_on):
 	$Overlay.visible = toggled_on

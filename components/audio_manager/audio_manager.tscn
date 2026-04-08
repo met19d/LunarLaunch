@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://components/audio_manager/audio_manager.gd" id="1_wp8op"]
 [ext_resource type="AudioStream" uid="uid://8pn0dh4ghkg4" path="res://assets/audio/explosion.wav" id="2_uq3gn"]
-[ext_resource type="AudioStream" uid="uid://briq5ptde68yv" path="res://assets/audio/select.mp3" id="3_0ay0b"]
+[ext_resource type="AudioStream" uid="uid://dwnj7cdyfjnet" path="res://assets/audio/select.wav" id="3_pke6s"]
 [ext_resource type="AudioStream" uid="uid://d17t02h7x4ixx" path="res://assets/audio/rocket_launch_sound.mp3" id="4_2x3u1"]
 [ext_resource type="AudioStream" uid="uid://d0xq1oj5cwpxk" path="res://assets/audio/clear.mp3" id="5_dfqp8"]
 [ext_resource type="AudioStream" uid="uid://cq5wo3k1qph1w" path="res://assets/audio/Level(M).wav" id="6_ieder"]
@@ -17,9 +17,7 @@ stream = ExtResource("2_uq3gn")
 volume_db = -10.637
 
 [node name="SelectSFX" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_0ay0b")
-volume_db = -9.0
-pitch_scale = 0.7
+stream = ExtResource("3_pke6s")
 
 [node name="LaunchSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_2x3u1")
